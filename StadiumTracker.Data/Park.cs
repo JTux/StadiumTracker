@@ -33,10 +33,10 @@ namespace StadiumTracker.Data
         [DefaultValue(false)]
         public bool IsVisited { get; set; }
 
-        //[DefaultValue(false)]
-        //public bool HasPin { get; set; }
+        [DefaultValue(false)]
+        public bool HasPin { get; set; }
 
-        //[DefaultValue(false)]
-        //public bool HasPhoto { get; set; }
+        [DefaultValue(false)]
+        public bool HasPhoto { get; set; }
     }
 }

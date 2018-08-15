@@ -20,6 +20,12 @@
         <th>
             @Html.DisplayNameFor(model => model.IsVisited)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasPin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasPhoto)
+        </th>
         <th></th>
     </tr>
 
@@ -33,6 +39,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsVisited)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HasPin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HasPhoto)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.ParkId }) |

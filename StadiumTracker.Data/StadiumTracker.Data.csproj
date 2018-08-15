@@ -61,6 +61,10 @@
     <Compile Include="Migrations\201808151831122_addedpark.Designer.cs">
       <DependentUpon>201808151831122_addedpark.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808151959109_updatedparktable.cs" />
+    <Compile Include="Migrations\201808151959109_updatedparktable.Designer.cs">
+      <DependentUpon>201808151959109_updatedparktable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Park.cs" />
     <Compile Include="Visit.cs" />
@@ -78,6 +82,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808151831122_addedpark.resx">
       <DependentUpon>201808151831122_addedpark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808151959109_updatedparktable.resx">
+      <DependentUpon>201808151959109_updatedparktable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

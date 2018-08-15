@@ -10,14 +10,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ParkId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ParkId)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.ParkName)
         </dt>
 
@@ -41,9 +33,25 @@
             @Html.DisplayFor(model => model.IsVisited)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.HasPin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasPin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasPhoto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasPhoto)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ParkId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

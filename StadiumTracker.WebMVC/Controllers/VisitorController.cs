@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace StadiumTracker.WebMVC.Controllers
 {
+    [Authorize]
     public class VisitorController : Controller
     {
         // GET: Visitor

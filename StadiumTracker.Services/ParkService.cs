@@ -49,7 +49,9 @@ namespace StadiumTracker.Services
                                     ParkId = e.ParkId,
                                     ParkName = e.ParkName,
                                     TeamName = e.TeamName,
-                                    IsVisited = e.IsVisited
+                                    IsVisited = e.IsVisited,
+                                    HasPin = e.HasPin,
+                                    HasPhoto = e.HasPhoto
                                 }
                         );
                 return query.ToArray();
