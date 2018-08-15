@@ -53,6 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Park\ParkCreate.cs" />
+    <Compile Include="Park\ParkDetail.cs" />
+    <Compile Include="Park\ParkEdit.cs" />
+    <Compile Include="Park\ParkListItem.cs" />
     <Compile Include="Visitor\VisitorCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Visitor\VisitorDetail.cs" />

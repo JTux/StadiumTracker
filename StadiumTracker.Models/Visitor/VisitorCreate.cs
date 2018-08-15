@@ -15,6 +15,6 @@ namespace StadiumTracker.Models.Visitor
         [Required]
         public string LastName { get; set; }
 
-        public override string ToString() => $"{FirstName} {LastName}";
+        //public override string ToString() => $"{FirstName} {LastName}";
     }
 }

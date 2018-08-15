@@ -14,20 +14,29 @@ namespace StadiumTracker.Data
 
         public Park(string name, string teamName)
         {
-            Name = name;
+            ParkName = name;
             TeamName = teamName;
         }
 
         [Key]
-        public int ParkID { get; set; }
+        public int ParkId { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public Guid OwnerId { get; set; }
+
+        [Required]
+        public string ParkName { get; set; }
 
         [Required]
         public string TeamName { get; set; }
 
         [DefaultValue(false)]
         public bool IsVisited { get; set; }
+
+        //[DefaultValue(false)]
+        //public bool HasPin { get; set; }
+
+        //[DefaultValue(false)]
+        //public bool HasPhoto { get; set; }
     }
 }
