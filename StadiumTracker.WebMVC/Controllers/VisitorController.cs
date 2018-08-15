@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
-using StadiumTracker.Models;
+using StadiumTracker.Models.Visitor;
 using StadiumTracker.Services;
 using System;
 using System.Collections.Generic;
@@ -57,7 +57,7 @@ namespace StadiumTracker.WebMVC.Controllers
             var model =
                 new VisitorEdit
                 {
-                    VisitorId = detail.VisitorId,
+                    //VisitorId = detail.VisitorId,
                     FirstName = detail.FirstName,
                     LastName = detail.LastName
                 };

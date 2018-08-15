@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StadiumTracker.Models
+namespace StadiumTracker.Models.Visitor
 {
     public class VisitorCreate
     {

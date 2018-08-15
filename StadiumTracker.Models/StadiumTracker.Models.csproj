@@ -53,11 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="VisitorCreate.cs" />
+    <Compile Include="Visitor\VisitorCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VisitorDetail.cs" />
-    <Compile Include="VisitorEdit.cs" />
-    <Compile Include="VisitorListItem.cs" />
+    <Compile Include="Visitor\VisitorDetail.cs" />
+    <Compile Include="Visitor\VisitorEdit.cs" />
+    <Compile Include="Visitor\VisitorListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
