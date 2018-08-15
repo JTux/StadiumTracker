@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using StadiumTracker.Data;
 using StadiumTracker.WebMVC.Models;
 
 namespace StadiumTracker.WebMVC.Controllers

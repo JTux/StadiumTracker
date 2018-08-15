@@ -197,11 +197,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ParkController.cs" />
+    <Compile Include="Controllers\VisitController.cs" />
+    <Compile Include="Controllers\VisitorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -265,9 +267,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Visitor\Index.cshtml" />
+    <Content Include="Views\Visitor\Create.cshtml" />
+    <Content Include="Views\Visitor\Edit.cshtml" />
+    <Content Include="Views\Visitor\Delete.cshtml" />
+    <Content Include="Views\Visitor\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Park\" />
+    <Folder Include="Views\Visit\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -281,6 +290,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StadiumTracker.Data\StadiumTracker.Data.csproj">
+      <Project>{51E3AD3B-1CAB-43A4-B609-26FF0A5D4CC0}</Project>
+      <Name>StadiumTracker.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StadiumTracker.Models\StadiumTracker.Models.csproj">
+      <Project>{e0c58156-485e-442b-b547-e25979cb0308}</Project>
+      <Name>StadiumTracker.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StadiumTracker.Services\StadiumTracker.Services.csproj">
+      <Project>{9058EE22-8BEB-4131-89F9-B18CA3EFAC0E}</Project>
+      <Name>StadiumTracker.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
