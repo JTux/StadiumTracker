@@ -12,16 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.VisitId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.VisitDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ParkId)
+            @Html.DisplayNameFor(model => model.Park.ParkName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.VisitorId)
+            @Html.DisplayNameFor(model => model.Visitor.FirstName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.GotPin)
@@ -35,16 +32,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.VisitId)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.VisitDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ParkId)
+            @Html.DisplayFor(modelItem => item.Park.ParkName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.VisitorId)
+            @Html.DisplayFor(modelItem => item.Visitor.FirstName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.GotPin)

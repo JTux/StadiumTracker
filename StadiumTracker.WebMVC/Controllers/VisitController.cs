@@ -25,7 +25,7 @@ namespace StadiumTracker.WebMVC.Controllers
         //Create
         public ActionResult Create()
         {
-            //ViewBag.VisitorId = new SelectList(db.Visitors, "VisitorId", "FirstName");
+            ViewBag.VisitorId = new SelectList(db.Visitors, "VisitorId", "FirstName");
             ViewBag.ParkId = new SelectList(db.Parks, "ParkId", "ParkName");
             return View();
         }

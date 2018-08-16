@@ -15,6 +15,8 @@ namespace StadiumTracker.Data
         {
             FirstName = firstName;
             LastName = lastName;
+
+            FullName = $"{FirstName} {LastName}";
         }
 
         [Key]
@@ -22,6 +24,8 @@ namespace StadiumTracker.Data
 
         [Required]
         public Guid OwnerId { get; set; }
+
+        public string FullName { get; set; }
 
         [Required]
         public string FirstName { get; set; }

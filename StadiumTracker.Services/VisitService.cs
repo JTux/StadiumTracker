@@ -73,7 +73,7 @@ namespace StadiumTracker.Services
                 var entity =
                     ctx
                         .Visits
-                        .Single(e => e.VisitId == visitId && e.OwnerId == _userId);
+                        .Single(e => e.VisitId == visitId);
                 return
                     new VisitDetail
                     {
@@ -95,7 +95,7 @@ namespace StadiumTracker.Services
                 var entity =
                     ctx
                         .Visits
-                        .Single(e => e.VisitId == model.VisitId && e.OwnerId == _userId);
+                        .Single(e => e.VisitId == model.VisitId);
 
                 entity.Park = model.Park;
                 entity.Visitor = model.Visitor;
@@ -115,7 +115,7 @@ namespace StadiumTracker.Services
                 var entity =
                     ctx
                         .Visits
-                        .Single(e => e.VisitId == visitId && e.OwnerId == _userId);
+                        .Single(e => e.VisitId == visitId);
 
                 ctx.Visits.Remove(entity);
 

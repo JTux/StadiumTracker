@@ -276,8 +276,11 @@
     <Content Include="Views\Park\Edit.cshtml" />
     <Content Include="Views\Park\Delete.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Visit\Create.cshtml" />
     <Content Include="Views\Visit\Index.cshtml" />
+    <Content Include="Views\Visit\Create.cshtml" />
+    <Content Include="Views\Visit\Details.cshtml" />
+    <Content Include="Views\Visit\Edit.cshtml" />
+    <Content Include="Views\Visit\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
