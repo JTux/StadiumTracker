@@ -53,19 +53,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Park\ParkCreate.cs" />
-    <Compile Include="Park\ParkDetail.cs" />
-    <Compile Include="Park\ParkEdit.cs" />
-    <Compile Include="Park\ParkListItem.cs" />
-    <Compile Include="Visitor\VisitorCreate.cs" />
+    <Compile Include="ParkModels\ParkCreate.cs" />
+    <Compile Include="ParkModels\ParkDetail.cs" />
+    <Compile Include="ParkModels\ParkEdit.cs" />
+    <Compile Include="ParkModels\ParkListItem.cs" />
+    <Compile Include="VisitorModels\VisitorCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Visitor\VisitorDetail.cs" />
-    <Compile Include="Visitor\VisitorEdit.cs" />
-    <Compile Include="Visitor\VisitorListItem.cs" />
+    <Compile Include="VisitorModels\VisitorDetail.cs" />
+    <Compile Include="VisitorModels\VisitorEdit.cs" />
+    <Compile Include="VisitorModels\VisitorListItem.cs" />
+    <Compile Include="VisitModels\VisitCreate.cs" />
+    <Compile Include="VisitModels\VisitDetail.cs" />
+    <Compile Include="VisitModels\VisitEdit.cs" />
+    <Compile Include="VisitModels\VisitListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StadiumTracker.Data\StadiumTracker.Data.csproj">
+      <Project>{51E3AD3B-1CAB-43A4-B609-26FF0A5D4CC0}</Project>
+      <Name>StadiumTracker.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

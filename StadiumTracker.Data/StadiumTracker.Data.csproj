@@ -65,6 +65,34 @@
     <Compile Include="Migrations\201808151959109_updatedparktable.Designer.cs">
       <DependentUpon>201808151959109_updatedparktable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808152245115_addedguidtovisit.cs" />
+    <Compile Include="Migrations\201808152245115_addedguidtovisit.Designer.cs">
+      <DependentUpon>201808152245115_addedguidtovisit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808152252429_renamedvisitproperties.cs" />
+    <Compile Include="Migrations\201808152252429_renamedvisitproperties.Designer.cs">
+      <DependentUpon>201808152252429_renamedvisitproperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808152318523_updatedvisitproperties.cs" />
+    <Compile Include="Migrations\201808152318523_updatedvisitproperties.Designer.cs">
+      <DependentUpon>201808152318523_updatedvisitproperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808160008092_changelisttovisitor.cs" />
+    <Compile Include="Migrations\201808160008092_changelisttovisitor.Designer.cs">
+      <DependentUpon>201808160008092_changelisttovisitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808161349422_addedparkid.cs" />
+    <Compile Include="Migrations\201808161349422_addedparkid.Designer.cs">
+      <DependentUpon>201808161349422_addedparkid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808161359491_addedforeignkeystovisit.cs" />
+    <Compile Include="Migrations\201808161359491_addedforeignkeystovisit.Designer.cs">
+      <DependentUpon>201808161359491_addedforeignkeystovisit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808161659128_firstdropdownbox.cs" />
+    <Compile Include="Migrations\201808161659128_firstdropdownbox.Designer.cs">
+      <DependentUpon>201808161659128_firstdropdownbox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Park.cs" />
     <Compile Include="Visit.cs" />
@@ -85,6 +113,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808151959109_updatedparktable.resx">
       <DependentUpon>201808151959109_updatedparktable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808152245115_addedguidtovisit.resx">
+      <DependentUpon>201808152245115_addedguidtovisit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808152252429_renamedvisitproperties.resx">
+      <DependentUpon>201808152252429_renamedvisitproperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808152318523_updatedvisitproperties.resx">
+      <DependentUpon>201808152318523_updatedvisitproperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808160008092_changelisttovisitor.resx">
+      <DependentUpon>201808160008092_changelisttovisitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808161349422_addedparkid.resx">
+      <DependentUpon>201808161349422_addedparkid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808161359491_addedforeignkeystovisit.resx">
+      <DependentUpon>201808161359491_addedforeignkeystovisit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808161659128_firstdropdownbox.resx">
+      <DependentUpon>201808161659128_firstdropdownbox.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

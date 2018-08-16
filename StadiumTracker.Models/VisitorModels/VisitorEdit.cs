@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StadiumTracker.Models.Visitor
+namespace StadiumTracker.Models.VisitorModels
 {
-    public class VisitorListItem
+    public class VisitorEdit
     {
         public int VisitorId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int TotalVisits { get; set; }
     }
 }

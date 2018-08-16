@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StadiumTracker.Models.Park
+namespace StadiumTracker.Models.ParkModels
 {
     public class ParkListItem
     {

@@ -1,5 +1,5 @@
 ﻿using StadiumTracker.Data;
-using StadiumTracker.Models.Visitor;
+using StadiumTracker.Models.VisitorModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

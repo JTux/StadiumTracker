@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
-using StadiumTracker.Models.Park;
+using StadiumTracker.Models.ParkModels;
 using StadiumTracker.Services;
 using System;
 using System.Collections.Generic;

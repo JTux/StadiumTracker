@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StadiumTracker.Models.Visitor
+namespace StadiumTracker.Models.VisitorModels
 {
-    public class VisitorDetail
+    public class VisitorListItem
     {
         public int VisitorId { get; set; }
         public string FirstName { get; set; }

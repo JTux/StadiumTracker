@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StadiumTracker.Models.Park
+namespace StadiumTracker.Models.ParkModels
 {
-    public class ParkCreate
+    public class ParkEdit
     {
-        [Required]
+        public int ParkId { get; set; }
         public string ParkName { get; set; }
-
-        [Required]
         public string TeamName { get; set; }
     }
 }
