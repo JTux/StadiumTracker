@@ -104,7 +104,23 @@ namespace StadiumTracker.Services
                         .Visits
                         .Single(e => e.VisitId == model.VisitId);
 
-                entity.Park = model.Park;
+                var parkBoolCheck =
+                    ctx
+                        .Parks
+                        .Single(e => e.ParkId == entity.ParkId);
+
+                if (model.GotPin != parkBoolCheck.HasPin)
+                {
+                    if (parkBoolCheck.HasPin == true) UpdatePinCount(entity.ParkId, -1, ctx);
+                    else if (parkBoolCheck.HasPin == false) UpdatePinCount(entity.ParkId, 1, ctx);
+                }
+
+                if (model.GotPhoto != parkBoolCheck.HasPhoto)
+                {
+                    if (parkBoolCheck.HasPhoto == true) UpdatePhotoCount(entity.ParkId, -1, ctx);
+                    else if (parkBoolCheck.HasPhoto == false) UpdatePhotoCount(entity.ParkId, 1, ctx);
+                }
+
                 entity.Visitor = model.Visitor;
                 entity.VisitDate = model.VisitDate;
                 entity.GotPin = model.GotPin;
