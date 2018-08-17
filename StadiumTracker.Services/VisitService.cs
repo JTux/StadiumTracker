@@ -36,6 +36,10 @@ namespace StadiumTracker.Services
                 UpdateTotalVisits(entity.VisitorId, 1, ctx);
                 UpdateVisitCount(entity.ParkId, 1, ctx);
 
+                if (entity.GotPin == true) 
+                    UpdatePinCount(entity.ParkId, 1, ctx);
+                if (entity.GotPhoto == true) 
+                    UpdatePhotoCount(entity.ParkId, 1, ctx);
 
                 ctx.Visits.Add(entity);
                 return ctx.SaveChanges() == 1;
@@ -120,20 +124,27 @@ namespace StadiumTracker.Services
                         .Visits
                         .Single(e => e.VisitId == visitId);
 
-                var countCheck =
+                var visitCountCheck =
                     ctx
                         .Visitors
                         .Single(e => e.VisitorId == entity.VisitorId);
-                if (countCheck.TotalVisits > 0)
+                if (visitCountCheck.TotalVisits > 0)
                     UpdateTotalVisits(entity.VisitorId, -1, ctx);
 
-                var visitedCountCheck =
+                var parkBoolCheck =
                     ctx
                         .Parks
                         .Single(e => e.ParkId == entity.ParkId);
-                if (visitedCountCheck.VisitCount > 0)
-                    UpdateVisitCount(visitedCountCheck.ParkId, -1, ctx)
-    ;
+
+                if (parkBoolCheck.VisitCount > 0)
+                    UpdateVisitCount(parkBoolCheck.ParkId, -1, ctx);
+
+                if (parkBoolCheck.PinCount > 0)
+                    UpdatePinCount(parkBoolCheck.ParkId, -1, ctx);
+
+                if (parkBoolCheck.PhotoCount > 0)
+                    UpdatePhotoCount(parkBoolCheck.ParkId, -1, ctx);
+
                 ctx.Visits.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
@@ -162,6 +173,38 @@ namespace StadiumTracker.Services
                     ctx.Parks.Single(e => e.ParkId == entity.ParkId);
             if (park.VisitCount > 0) park.IsVisited = true;
             else park.IsVisited = false;
+
+            return ctx.SaveChanges() == 1;
+        }
+
+        private bool UpdatePinCount(int parkId, int value, ApplicationDbContext ctx)
+        {
+            var entity =
+                ctx
+                    .Parks
+                    .Single(e => e.ParkId == parkId);
+            entity.PinCount += value;
+
+            var park =
+                    ctx.Parks.Single(e => e.ParkId == entity.ParkId);
+            if (park.PinCount > 0) park.HasPin = true;
+            else park.HasPin = false;
+
+            return ctx.SaveChanges() == 1;
+        }
+
+        private bool UpdatePhotoCount(int parkId, int value, ApplicationDbContext ctx)
+        {
+            var entity =
+                ctx
+                    .Parks
+                    .Single(e => e.ParkId == parkId);
+            entity.PhotoCount += value;
+
+            var park =
+                    ctx.Parks.Single(e => e.ParkId == entity.ParkId);
+            if (park.PhotoCount > 0) park.HasPhoto = true;
+            else park.HasPhoto = false;
 
             return ctx.SaveChanges() == 1;
         }
