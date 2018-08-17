@@ -48,7 +48,6 @@ namespace StadiumTracker.Services
                 var query =
                     ctx
                         .Visits
-                        //.Where(e => e.OwnerId == _userId)
                         .Select(
                             e =>
                                 new VisitListItem
@@ -118,6 +117,14 @@ namespace StadiumTracker.Services
                     ctx
                         .Visits
                         .Single(e => e.VisitId == visitId);
+
+                var countCheck =
+                    ctx
+                        .Visitors
+                        .Single(e => e.VisitorId == entity.VisitorId);
+
+                if (countCheck.TotalVisits > 0)
+                    UpdateTotalVisits(entity.VisitorId, -1);
 
                 ctx.Visits.Remove(entity);
 
