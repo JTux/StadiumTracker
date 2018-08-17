@@ -38,5 +38,9 @@ namespace StadiumTracker.Data
 
         [DefaultValue(false)]
         public bool HasPhoto { get; set; }
+
+        public int VisitCount { get; set; }
+        public int PinCount { get; set; }
+        public int PhotoCount { get; set; }
     }
 }

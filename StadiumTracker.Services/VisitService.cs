@@ -31,10 +31,12 @@ namespace StadiumTracker.Services
                 VisitorId = model.VisitorId
             };
 
-            UpdateTotalVisits(entity.VisitorId, 1);
-
             using (var ctx = new ApplicationDbContext())
             {
+                UpdateTotalVisits(entity.VisitorId, 1, ctx);
+                UpdateVisitCount(entity.ParkId, 1, ctx);
+
+
                 ctx.Visits.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
@@ -122,27 +124,46 @@ namespace StadiumTracker.Services
                     ctx
                         .Visitors
                         .Single(e => e.VisitorId == entity.VisitorId);
-
                 if (countCheck.TotalVisits > 0)
-                    UpdateTotalVisits(entity.VisitorId, -1);
+                    UpdateTotalVisits(entity.VisitorId, -1, ctx);
 
+                var visitedCountCheck =
+                    ctx
+                        .Parks
+                        .Single(e => e.ParkId == entity.ParkId);
+                if (visitedCountCheck.VisitCount > 0)
+                    UpdateVisitCount(visitedCountCheck.ParkId, -1, ctx)
+    ;
                 ctx.Visits.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        private bool UpdateTotalVisits(int visitorId, int value)
+        private bool UpdateTotalVisits(int visitorId, int value, ApplicationDbContext ctx)
         {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Visitors
-                        .Single(e => e.VisitorId == visitorId);
-                entity.TotalVisits += value;
-                return ctx.SaveChanges() == 1;
-            }
+            var entity =
+                ctx
+                    .Visitors
+                    .Single(e => e.VisitorId == visitorId);
+            entity.TotalVisits += value;
+            return ctx.SaveChanges() == 1;
+        }
+
+        private bool UpdateVisitCount(int parkId, int value, ApplicationDbContext ctx)
+        {
+            var entity =
+                ctx
+                    .Parks
+                    .Single(e => e.ParkId == parkId);
+            entity.VisitCount += value;
+
+            var park =
+                    ctx.Parks.Single(e => e.ParkId == entity.ParkId);
+            if (park.VisitCount > 0) park.IsVisited = true;
+            else park.IsVisited = false;
+
+            return ctx.SaveChanges() == 1;
         }
     }
 }

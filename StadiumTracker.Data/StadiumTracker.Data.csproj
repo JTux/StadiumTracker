@@ -97,6 +97,10 @@
     <Compile Include="Migrations\201808161753001_addedfullname.Designer.cs">
       <DependentUpon>201808161753001_addedfullname.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808171349015_addedparkcounts.cs" />
+    <Compile Include="Migrations\201808171349015_addedparkcounts.Designer.cs">
+      <DependentUpon>201808171349015_addedparkcounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Park.cs" />
     <Compile Include="Visit.cs" />
@@ -141,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808161753001_addedfullname.resx">
       <DependentUpon>201808161753001_addedfullname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808171349015_addedparkcounts.resx">
+      <DependentUpon>201808171349015_addedparkcounts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
