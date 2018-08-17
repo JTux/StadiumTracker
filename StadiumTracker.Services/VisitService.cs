@@ -31,6 +31,8 @@ namespace StadiumTracker.Services
                 VisitorId = model.VisitorId
             };
 
+            UpdateTotalVisits(entity.VisitorId, 1);
+
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Visits.Add(entity);
@@ -119,6 +121,19 @@ namespace StadiumTracker.Services
 
                 ctx.Visits.Remove(entity);
 
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        private bool UpdateTotalVisits(int visitorId, int value)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Visitors
+                        .Single(e => e.VisitorId == visitorId);
+                entity.TotalVisits += value;
                 return ctx.SaveChanges() == 1;
             }
         }

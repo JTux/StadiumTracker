@@ -60,7 +60,8 @@ namespace StadiumTracker.WebMVC.Controllers
                 {
                     VisitorId = detail.VisitorId,
                     FirstName = detail.FirstName,
-                    LastName = detail.LastName
+                    LastName = detail.LastName,
+                    FullName = $"{detail.FirstName} {detail.LastName}"
                 };
             return View(model);
         }

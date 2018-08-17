@@ -24,9 +24,9 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Companions", "Index", "Visitor")</li>
+                        <li>@Html.ActionLink("People", "Index", "Visitor")</li>
                         <li>@Html.ActionLink("Stadiums", "Index", "Park")</li>
-                        <li>@Html.ActionLink("Recorded Visits","Index","Visit")</li>
+                        <li>@Html.ActionLink("Visits","Index","Visit")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

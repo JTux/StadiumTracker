@@ -38,7 +38,6 @@ namespace StadiumTracker.Data
 
         public virtual Park Park { get; set; }
         public virtual Visitor Visitor { get; set; }
-        //public virtual List<Visitor> VisitorList { get; set; }
 
         [Required]
         public bool GotPin { get; set; }
