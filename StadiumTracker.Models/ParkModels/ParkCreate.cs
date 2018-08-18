@@ -14,5 +14,8 @@ namespace StadiumTracker.Models.ParkModels
 
         [Required]
         public string TeamName { get; set; }
+
+        [Required]
+        public string CityName { get; set; }
     }
 }

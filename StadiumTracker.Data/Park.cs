@@ -30,6 +30,9 @@ namespace StadiumTracker.Data
         [Required]
         public string TeamName { get; set; }
 
+        [Required]
+        public string CityName { get; set; }
+
         [DefaultValue(false)]
         public bool IsVisited { get; set; }
 

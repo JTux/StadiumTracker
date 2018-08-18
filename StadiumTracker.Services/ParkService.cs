@@ -24,6 +24,7 @@ namespace StadiumTracker.Services
                 OwnerId = _userId,
                 ParkName = model.ParkName,
                 TeamName = model.TeamName,
+                CityName = model.CityName
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -49,6 +50,7 @@ namespace StadiumTracker.Services
                                     ParkId = e.ParkId,
                                     ParkName = e.ParkName,
                                     TeamName = e.TeamName,
+                                    CityName = e.CityName,
                                     IsVisited = e.IsVisited,
                                     HasPin = e.HasPin,
                                     HasPhoto = e.HasPhoto
@@ -73,6 +75,7 @@ namespace StadiumTracker.Services
                         ParkId = entity.ParkId,
                         ParkName = entity.ParkName,
                         TeamName = entity.TeamName,
+                        CityName = entity.CityName,
                         IsVisited = entity.IsVisited
                     };
             }
@@ -90,6 +93,7 @@ namespace StadiumTracker.Services
 
                 entity.ParkName = model.ParkName;
                 entity.TeamName = model.TeamName;
+                entity.CityName = model.CityName;
 
                 return ctx.SaveChanges() == 1;
             }

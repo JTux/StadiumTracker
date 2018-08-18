@@ -33,13 +33,6 @@ namespace StadiumTracker.Data
 
         public string FullName { get; set; }
 
-        //private string fullName;
-        //public string FullName
-        //{
-        //    get { return fullName; }
-        //    set { fullName = $"{ FirstName} {LastName}"; }
-        //}
-
         public int TotalVisits { get; set; }
     }
 }
