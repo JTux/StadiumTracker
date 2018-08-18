@@ -104,10 +104,8 @@ namespace StadiumTracker.Services
                         .Visits
                         .Single(e => e.VisitId == model.VisitId);
 
-                var parkBoolCheck =
-                    ctx
-                        .Parks
-                        .Single(e => e.ParkId == entity.ParkId);
+                var parkBoolCheck = AccessPark(ctx, entity.Park);
+
 
                 if (model.GotPin != parkBoolCheck.HasPin)
                 {
@@ -177,6 +175,16 @@ namespace StadiumTracker.Services
             return ctx.SaveChanges() == 1;
         }
 
+        private Park AccessPark(ApplicationDbContext ctx, Park park)
+        {
+            var variable =
+                ctx
+                    .Parks
+                    .Single(e => e.ParkId == park.ParkId);
+            return variable;
+                            
+        }
+
         private bool UpdateVisitCount(int parkId, int value, ApplicationDbContext ctx)
         {
             var entity =
@@ -185,8 +193,8 @@ namespace StadiumTracker.Services
                     .Single(e => e.ParkId == parkId);
             entity.VisitCount += value;
 
-            var park =
-                    ctx.Parks.Single(e => e.ParkId == entity.ParkId);
+            var park = AccessPark(ctx, entity);
+
             if (park.VisitCount > 0) park.IsVisited = true;
             else park.IsVisited = false;
 
@@ -201,8 +209,8 @@ namespace StadiumTracker.Services
                     .Single(e => e.ParkId == parkId);
             entity.PinCount += value;
 
-            var park =
-                    ctx.Parks.Single(e => e.ParkId == entity.ParkId);
+            var park = AccessPark(ctx,entity);
+
             if (park.PinCount > 0) park.HasPin = true;
             else park.HasPin = false;
 
@@ -217,8 +225,8 @@ namespace StadiumTracker.Services
                     .Single(e => e.ParkId == parkId);
             entity.PhotoCount += value;
 
-            var park =
-                    ctx.Parks.Single(e => e.ParkId == entity.ParkId);
+            var park = AccessPark(ctx, entity);
+
             if (park.PhotoCount > 0) park.HasPhoto = true;
             else park.HasPhoto = false;
 
