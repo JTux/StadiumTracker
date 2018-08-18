@@ -10,18 +10,12 @@ namespace StadiumTracker.Services
 {
     public class VisitService
     {
-        private readonly Guid _userId;
-        public VisitService(Guid userId)
-        {
-            _userId = userId;
-        }
+        public VisitService() { }
 
-        //Create
         public bool CreateVisit(VisitCreate model)
         {
             var entity = new Visit()
             {
-                OwnerId = _userId,
                 VisitDate = model.VisitDate,
                 Park = model.Park,
                 Visitor = model.Visitor,
@@ -46,7 +40,6 @@ namespace StadiumTracker.Services
             }
         }
 
-        //Get All Visits
         public IEnumerable<VisitListItem> GetVisits()
         {
             using (var ctx = new ApplicationDbContext())
@@ -72,7 +65,6 @@ namespace StadiumTracker.Services
             }
         }
 
-        //Get Visit By ID
         public VisitDetail GetVisitById(int visitId)
         {
             using (var ctx = new ApplicationDbContext())
@@ -94,7 +86,6 @@ namespace StadiumTracker.Services
             }
         }
 
-        //Update Visit
         public bool UpdateVisit(VisitEdit model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -104,7 +95,7 @@ namespace StadiumTracker.Services
                         .Visits
                         .Single(e => e.VisitId == model.VisitId);
 
-                var parkBoolCheck = AccessPark(ctx, entity.Park);
+                var parkBoolCheck = AccessPark(ctx, entity.Park.ParkId);
 
 
                 if (model.GotPin != parkBoolCheck.HasPin)
@@ -128,7 +119,6 @@ namespace StadiumTracker.Services
             }
         }
 
-        //Delete Visit
         public bool DeleteVisit(int visitId)
         {
             using (var ctx = new ApplicationDbContext())
@@ -145,10 +135,7 @@ namespace StadiumTracker.Services
                 if (visitCountCheck.TotalVisits > 0)
                     UpdateTotalVisits(entity.VisitorId, -1, ctx);
 
-                var parkBoolCheck =
-                    ctx
-                        .Parks
-                        .Single(e => e.ParkId == entity.ParkId);
+                var parkBoolCheck = AccessPark(ctx, entity.Park.ParkId);
 
                 if (parkBoolCheck.VisitCount > 0)
                     UpdateVisitCount(parkBoolCheck.ParkId, -1, ctx);
@@ -175,25 +162,19 @@ namespace StadiumTracker.Services
             return ctx.SaveChanges() == 1;
         }
 
-        private Park AccessPark(ApplicationDbContext ctx, Park park)
+        private Park AccessPark(ApplicationDbContext ctx, int parkId)
         {
             var variable =
                 ctx
                     .Parks
-                    .Single(e => e.ParkId == park.ParkId);
+                    .Single(e => e.ParkId == parkId);
             return variable;
-                            
         }
 
         private bool UpdateVisitCount(int parkId, int value, ApplicationDbContext ctx)
         {
-            var entity =
-                ctx
-                    .Parks
-                    .Single(e => e.ParkId == parkId);
-            entity.VisitCount += value;
-
-            var park = AccessPark(ctx, entity);
+            var park = AccessPark(ctx, parkId);
+            park.VisitCount += value;
 
             if (park.VisitCount > 0) park.IsVisited = true;
             else park.IsVisited = false;
@@ -203,13 +184,8 @@ namespace StadiumTracker.Services
 
         private bool UpdatePinCount(int parkId, int value, ApplicationDbContext ctx)
         {
-            var entity =
-                ctx
-                    .Parks
-                    .Single(e => e.ParkId == parkId);
-            entity.PinCount += value;
-
-            var park = AccessPark(ctx,entity);
+            var park = AccessPark(ctx,parkId);
+            park.PinCount += value;
 
             if (park.PinCount > 0) park.HasPin = true;
             else park.HasPin = false;
@@ -219,13 +195,8 @@ namespace StadiumTracker.Services
 
         private bool UpdatePhotoCount(int parkId, int value, ApplicationDbContext ctx)
         {
-            var entity =
-                ctx
-                    .Parks
-                    .Single(e => e.ParkId == parkId);
-            entity.PhotoCount += value;
-
-            var park = AccessPark(ctx, entity);
+            var park = AccessPark(ctx, parkId);
+            park.PhotoCount += value;
 
             if (park.PhotoCount > 0) park.HasPhoto = true;
             else park.HasPhoto = false;

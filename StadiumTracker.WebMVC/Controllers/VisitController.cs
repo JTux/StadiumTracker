@@ -122,8 +122,7 @@ namespace StadiumTracker.WebMVC.Controllers
         //Refactor Creating Service into a single Method
         private VisitService CreateVisitService()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            return new VisitService(userId);
+            return new VisitService();
         }
     }
 }

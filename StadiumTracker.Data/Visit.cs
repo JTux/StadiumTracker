@@ -31,9 +31,9 @@ namespace StadiumTracker.Data
         public int VisitorId { get; set; }
 
         [Required]
-        public Guid OwnerId { get; set; }
-
-        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Visit Date")]
         public DateTime VisitDate { get; set; }
 
         public virtual Park Park { get; set; }
