@@ -16,7 +16,6 @@ namespace StadiumTracker.Services
             _userId = userId;
         }
 
-        //Create
         public bool CreatePark(ParkCreate model)
         {
             var entity = new Park()
@@ -34,7 +33,6 @@ namespace StadiumTracker.Services
             }
         }
 
-        //Get all Parks
         public IEnumerable<ParkListItem> GetParks()
         {
             using (var ctx = new ApplicationDbContext())
@@ -60,15 +58,11 @@ namespace StadiumTracker.Services
             }
         }
         
-        //Get Park by Id
         public ParkDetail GetParkById(int parkId)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .Parks
-                        .Single(e => e.ParkId == parkId && e.OwnerId == _userId);
+                var entity = ctx.Parks.Single(e => e.ParkId == parkId && e.OwnerId == _userId);
                 return
                     new ParkDetail
                     {
@@ -81,15 +75,11 @@ namespace StadiumTracker.Services
             }
         }
 
-        //UpdatePark
         public bool UpdatePark(ParkEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .Parks
-                        .Single(e => e.ParkId == model.ParkId && e.OwnerId == _userId);
+                var entity = ctx.Parks.Single(e => e.ParkId == model.ParkId && e.OwnerId == _userId);
 
                 entity.ParkName = model.ParkName;
                 entity.TeamName = model.TeamName;
@@ -99,15 +89,11 @@ namespace StadiumTracker.Services
             }
         }
 
-        //DeletePark
         public bool DeletePark(int parkId)
         {
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .Parks
-                        .Single(e => e.ParkId == parkId && e.OwnerId == _userId);
+                var entity = ctx.Parks.Single(e => e.ParkId == parkId && e.OwnerId == _userId);
 
                 ctx.Parks.Remove(entity);
 

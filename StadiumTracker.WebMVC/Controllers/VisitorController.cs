@@ -12,14 +12,12 @@ namespace StadiumTracker.WebMVC.Controllers
     [Authorize]
     public class VisitorController : Controller
     {
-        // GET: Visitor
         public ActionResult Index()
         {
             var service = CreateVisitorService();
             return View(service.GetVisitors());
         }
 
-        //Create
         public ActionResult Create()
         {
             return View();
@@ -43,14 +41,12 @@ namespace StadiumTracker.WebMVC.Controllers
             return View(model);
         }
 
-        //Details
          public ActionResult Details(int id)
         {
             var service = CreateVisitorService();
             return View(service.GetVisitorById(id));
         }
 
-        //Edit
         public ActionResult Edit(int id)
         {
             var service = CreateVisitorService();
@@ -90,7 +86,6 @@ namespace StadiumTracker.WebMVC.Controllers
             return View(model);
         }
 
-        //Delete
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {

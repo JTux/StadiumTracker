@@ -1,4 +1,5 @@
-﻿using StadiumTracker.Data;
+﻿using StadiumTracker.Contracts;
+using StadiumTracker.Data;
 using StadiumTracker.Models.VisitorModels;
 using System;
 using System.Collections.Generic;
@@ -8,16 +9,15 @@ using System.Threading.Tasks;
 
 namespace StadiumTracker.Services
 {
-    public class VisitorService
+    public class VisitorService : IVisitorService
     {
-        //Binds user to Visitor objets
         private readonly Guid _userId;
+        public VisitorService() { }
         public VisitorService(Guid userId)
         {
             _userId = userId;
         }
 
-        //Create Visitor
         public bool CreateVisitor(VisitorCreate model)
         {
             var entity =
@@ -34,7 +34,6 @@ namespace StadiumTracker.Services
             }
         }
 
-        //Get all Visitors
         public IEnumerable<VisitorListItem> GetVisitors()
         {
             using (var ctx = new ApplicationDbContext())
@@ -57,7 +56,6 @@ namespace StadiumTracker.Services
             }
         }
 
-        //GetVisitorByID
         public VisitorDetail GetVisitorById(int visitorId)
         {
             using (var ctx = new ApplicationDbContext())
@@ -77,7 +75,6 @@ namespace StadiumTracker.Services
             }
         }
 
-        //UpdateVisitor
         public bool UpdateVisitor(VisitorEdit model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -94,7 +91,6 @@ namespace StadiumTracker.Services
             }
         }
 
-        //DeleteVisitor
         public bool DeleteVisitor(int visitorId)
         {
             using (var ctx = new ApplicationDbContext())
