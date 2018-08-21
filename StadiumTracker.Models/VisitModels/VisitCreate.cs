@@ -11,6 +11,8 @@ namespace StadiumTracker.Models.VisitModels
     public class VisitCreate
     {
         [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime VisitDate { get; set; }
 
         public int ParkId { get; set; }

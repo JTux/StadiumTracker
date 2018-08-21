@@ -25,7 +25,8 @@ namespace StadiumTracker.Services
                 {
                     OwnerId = _userId,
                     FirstName = model.FirstName,
-                    LastName = model.LastName
+                    LastName = model.LastName,
+                    FullName = $"{model.FirstName} {model.LastName}"
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -49,7 +50,9 @@ namespace StadiumTracker.Services
                                     VisitorId = e.VisitorId,
                                     FirstName = e.FirstName,
                                     LastName = e.LastName,
-                                    TotalVisits = e.TotalVisits
+                                    FullName = e.FullName,
+                                    TotalVisits = e.TotalVisits,
+                                    TotalPins = e.TotalPins
                                 }
                         );
                 return query.ToArray();
@@ -70,7 +73,9 @@ namespace StadiumTracker.Services
                         VisitorId = entity.VisitorId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
-                        TotalVisits = entity.TotalVisits
+                        FullName = entity.FullName,
+                        TotalVisits = entity.TotalVisits,
+                        TotalPins = entity.TotalPins
                     };
             }
         }
@@ -86,6 +91,7 @@ namespace StadiumTracker.Services
 
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
+                entity.FullName = $"{model.FirstName} {model.LastName}";
 
                 return ctx.SaveChanges() == 1;
             }

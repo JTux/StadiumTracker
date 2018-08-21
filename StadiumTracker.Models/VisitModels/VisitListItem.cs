@@ -1,6 +1,7 @@
 ﻿using StadiumTracker.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,9 @@ namespace StadiumTracker.Models.VisitModels
     public class VisitListItem
     {
         public int VisitId { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime VisitDate { get; set; }
 
         public int ParkId { get; set; }

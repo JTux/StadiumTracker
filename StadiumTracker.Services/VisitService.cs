@@ -98,6 +98,8 @@ namespace StadiumTracker.Services
 
                 var parkBoolCheck = ctx.Parks.Single(e => e.ParkId == entity.Park.ParkId);
 
+                entity.Visitor = model.Visitor;
+
                 if (model.GotPin != parkBoolCheck.HasPin)
                 {
                     if (parkBoolCheck.HasPin == true)
@@ -118,7 +120,6 @@ namespace StadiumTracker.Services
                     else if (parkBoolCheck.HasPhoto == false) UpdatePhotoCount(entity.ParkId, 1, ctx);
                 }
 
-                //entity.Visitor = model.Visitor;
                 entity.VisitDate = model.VisitDate;
                 entity.GotPin = model.GotPin;
                 entity.GotPhoto = model.GotPhoto;

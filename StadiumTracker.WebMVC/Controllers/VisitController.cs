@@ -22,7 +22,7 @@ namespace StadiumTracker.WebMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Create()
         {
-            ViewBag.VisitorId = new SelectList(db.Visitors, "VisitorId", "FirstName");
+            ViewBag.VisitorId = new SelectList(db.Visitors, "VisitorId", "FullName");
             ViewBag.ParkId = new SelectList(db.Parks, "ParkId", "ParkName");
 
             return View();
