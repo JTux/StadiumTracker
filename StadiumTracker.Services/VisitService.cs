@@ -30,9 +30,12 @@ namespace StadiumTracker.Services
                 UpdateTotalVisits(entity.VisitorId, 1, ctx);
                 UpdateVisitCount(entity.ParkId, 1, ctx);
 
-                if (entity.GotPin == true) 
+                if (entity.GotPin == true)
+                {
                     UpdatePinCount(entity.ParkId, 1, ctx);
-                if (entity.GotPhoto == true) 
+                    UpdatePersonalPins(entity.VisitorId, 1, ctx);
+                }
+                if (entity.GotPhoto == true)
                     UpdatePhotoCount(entity.ParkId, 1, ctx);
 
                 ctx.Visits.Add(entity);
@@ -63,7 +66,7 @@ namespace StadiumTracker.Services
                         );
                 var newList = query.ToList();
 
-                newList.OrderBy(x=>x.Park.ParkName);
+                newList.OrderBy(x => x.Park.ParkName);
 
                 return newList;
             }
@@ -97,8 +100,16 @@ namespace StadiumTracker.Services
 
                 if (model.GotPin != parkBoolCheck.HasPin)
                 {
-                    if (parkBoolCheck.HasPin == true) UpdatePinCount(entity.ParkId, -1, ctx);
-                    else if (parkBoolCheck.HasPin == false) UpdatePinCount(entity.ParkId, 1, ctx);
+                    if (parkBoolCheck.HasPin == true)
+                    {
+                        UpdatePinCount(entity.ParkId, -1, ctx);
+                        UpdatePersonalPins(entity.VisitorId, -1, ctx);
+                    }
+                    else if (parkBoolCheck.HasPin == false)
+                    {
+                        UpdatePinCount(entity.ParkId, 1, ctx);
+                        UpdatePersonalPins(entity.VisitorId, 1, ctx);
+                    }
                 }
 
                 if (model.GotPhoto != parkBoolCheck.HasPhoto)
@@ -107,7 +118,7 @@ namespace StadiumTracker.Services
                     else if (parkBoolCheck.HasPhoto == false) UpdatePhotoCount(entity.ParkId, 1, ctx);
                 }
 
-                entity.Visitor = model.Visitor;
+                //entity.Visitor = model.Visitor;
                 entity.VisitDate = model.VisitDate;
                 entity.GotPin = model.GotPin;
                 entity.GotPhoto = model.GotPhoto;
@@ -136,6 +147,9 @@ namespace StadiumTracker.Services
 
                 if (parkBoolCheck.PhotoCount > 0)
                     UpdatePhotoCount(parkBoolCheck.ParkId, -1, ctx);
+
+                if (entity.GotPin == true)
+                    UpdatePersonalPins(entity.VisitorId, -1, ctx);
 
                 ctx.Visits.Remove(entity);
 
@@ -168,6 +182,14 @@ namespace StadiumTracker.Services
 
             if (park.PinCount > 0) park.HasPin = true;
             else park.HasPin = false;
+
+            return ctx.SaveChanges() == 1;
+        }
+
+        private bool UpdatePersonalPins(int visitorId, int value, ApplicationDbContext ctx)
+        {
+            var visitor = ctx.Visitors.Single(e => e.VisitorId == visitorId);
+            visitor.TotalPins += value;
 
             return ctx.SaveChanges() == 1;
         }

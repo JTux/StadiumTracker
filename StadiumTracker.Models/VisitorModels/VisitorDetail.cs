@@ -12,5 +12,6 @@ namespace StadiumTracker.Models.VisitorModels
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int TotalVisits { get; set; }
+        public int TotalPins { get; set; }
     }
 }

@@ -21,8 +21,5 @@ namespace StadiumTracker.Models.VisitorModels
             get { return fullName; }
             set { fullName = $"{ FirstName} {LastName}"; }
         }
-
-
-        //public override string ToString() => $"{FirstName} {LastName}";
     }
 }

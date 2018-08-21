@@ -34,5 +34,7 @@ namespace StadiumTracker.Data
         public string FullName { get; set; }
 
         public int TotalVisits { get; set; }
+
+        public int TotalPins { get; set; }
     }
 }
