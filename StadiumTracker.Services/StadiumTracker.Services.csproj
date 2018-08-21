@@ -63,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StadiumTracker.Contracts\StadiumTracker.Contracts.csproj">
+      <Project>{FB1D2B7B-4C55-470B-AE89-E76FBF814F35}</Project>
+      <Name>StadiumTracker.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StadiumTracker.Data\StadiumTracker.Data.csproj">
       <Project>{51E3AD3B-1CAB-43A4-B609-26FF0A5D4CC0}</Project>
       <Name>StadiumTracker.Data</Name>

@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Stadium Tracker</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/Site.css">
 
 </head>
 <body>
@@ -21,12 +22,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("People", "Index", "Visitor")</li>
                         <li>@Html.ActionLink("Stadiums", "Index", "Park")</li>
-                        <li>@Html.ActionLink("Visits","Index","Visit")</li>
+                        <li>@Html.ActionLink("Visits", "Index", "Visit")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -35,12 +35,15 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Stadium Visit Tracker</p>
-        </footer>
     </div>
-
+    <div class="row footer-area">
+        <div class="col-md-12">
+            <footer id="footer">
+                <hr>
+                <p>&copy; @DateTime.Now.Year - Stadium Visit Tracker</p>
+            </footer>
+        </div>
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

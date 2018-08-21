@@ -61,7 +61,11 @@ namespace StadiumTracker.Services
                                     VisitDate = e.VisitDate
                                 }
                         );
-                return query.ToArray();
+                var newList = query.ToList();
+
+                newList.OrderBy(x=>x.Park.ParkName);
+
+                return newList;
             }
         }
 

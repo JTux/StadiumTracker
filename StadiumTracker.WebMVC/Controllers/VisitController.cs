@@ -13,20 +13,18 @@ namespace StadiumTracker.WebMVC.Controllers
     [Authorize]
     public class VisitController : Controller
     {
-        // GET: Visit
         public ActionResult Index()
         {
-            var service = CreateVisitService();
+            var service = new VisitService();
             return View(service.GetVisits());
         }
 
         private ApplicationDbContext db = new ApplicationDbContext();
-
-        //Create
         public ActionResult Create()
         {
             ViewBag.VisitorId = new SelectList(db.Visitors, "VisitorId", "FirstName");
             ViewBag.ParkId = new SelectList(db.Parks, "ParkId", "ParkName");
+
             return View();
         }
 
@@ -36,7 +34,7 @@ namespace StadiumTracker.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var service = CreateVisitService();
+            var service = new VisitService();
 
             if (service.CreateVisit(model))
             {
@@ -44,24 +42,21 @@ namespace StadiumTracker.WebMVC.Controllers
                 return RedirectToAction("Index");
             }
 
-            //ViewBag.VisitorId = new SelectList(db.Visitors, "VisitorId", "FirstName");
             ViewBag.ParkId = new SelectList(db.Parks, "ParkId", "ParkName", model.ParkId);
 
             ModelState.AddModelError("", "Visit could not be added.");
             return View(model);
         }
 
-        //Details
         public ActionResult Details(int id)
         {
-            var service = CreateVisitService();
+            var service = new VisitService();
             return View(service.GetVisitById(id));
         }
 
-        //Edit
         public ActionResult Edit (int id)
         {
-            var service = CreateVisitService();
+            var service = new VisitService();
             var detail = service.GetVisitById(id);
             var model =
                 new VisitEdit
@@ -88,7 +83,7 @@ namespace StadiumTracker.WebMVC.Controllers
                 return View(model);
             }
 
-            var service = CreateVisitService();
+            var service = new VisitService();
 
             if (service.UpdateVisit(model))
             {
@@ -100,11 +95,10 @@ namespace StadiumTracker.WebMVC.Controllers
             return View(model);
         }
 
-        //Delete
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var service = CreateVisitService();
+            var service = new VisitService();
             return View(service.GetVisitById(id));
         }
 
@@ -113,16 +107,10 @@ namespace StadiumTracker.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
-            var service = CreateVisitService();
+            var service = new VisitService();
             service.DeleteVisit(id);
             TempData["SaveResult"] = "Visit has been deleted.";
             return RedirectToAction("Index");
-        }
-
-        //Refactor Creating Service into a single Method
-        private VisitService CreateVisitService()
-        {
-            return new VisitService();
         }
     }
 }

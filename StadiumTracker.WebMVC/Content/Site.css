@@ -1,12 +1,18 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url(Images/background.jpg);
+    background-repeat: no-repeat;
+    background-position: top center;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    background-color: rgba(255,255,255, .9);
+    min-height:800px;
+    width: 60%;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -21,4 +27,29 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+.footer-area {
+    width: 100%;
+    margin: auto;
+}
+
+#footer{
+    width: 100%;
+    text-align: center;
+}
+
+.jumbotron {
+    background-color: transparent;
+}
+.jumbotron h1 {
+    margin-bottom: .8em;
+}
+
+.home-descriptions {
+    text-align: center;
+}
+
+.text {
+    text-indent: 1em;
+    text-align: left;
 }

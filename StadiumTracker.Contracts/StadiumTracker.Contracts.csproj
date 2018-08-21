@@ -53,12 +53,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="IParkService.cs" />
+    <Compile Include="IVisitorService.cs" />
+    <Compile Include="IVisitService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StadiumTracker.Data\StadiumTracker.Data.csproj">
+      <Project>{51e3ad3b-1cab-43a4-b609-26ff0a5d4cc0}</Project>
+      <Name>StadiumTracker.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StadiumTracker.Models\StadiumTracker.Models.csproj">
+      <Project>{e0c58156-485e-442b-b547-e25979cb0308}</Project>
+      <Name>StadiumTracker.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

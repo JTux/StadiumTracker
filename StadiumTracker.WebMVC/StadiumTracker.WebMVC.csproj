@@ -275,7 +275,6 @@
     <Content Include="Views\Park\Details.cshtml" />
     <Content Include="Views\Park\Edit.cshtml" />
     <Content Include="Views\Park\Delete.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Visit\Index.cshtml" />
     <Content Include="Views\Visit\Create.cshtml" />
     <Content Include="Views\Visit\Details.cshtml" />
@@ -284,6 +283,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
