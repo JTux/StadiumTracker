@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chart.cs" />
     <Compile Include="ParkModels\ParkCreate.cs" />
     <Compile Include="ParkModels\ParkDetail.cs" />
     <Compile Include="ParkModels\ParkEdit.cs" />
