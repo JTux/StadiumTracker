@@ -1,8 +1,11 @@
 ﻿using StadiumTracker.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
-namespace ChartJs.Controllers
+namespace StadiumTracker.WebMVC.Controllers
 {
     public class BarChartController : Controller
     {
@@ -28,6 +31,32 @@ namespace ChartJs.Controllers
             });
             _chart.datasets = _dataSet;
             return Json(_chart, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult StadiumVisitsByPerson()
+        {
+
+            Chart chart = new Chart();
+            chart.labels = new string[] { "January", "February", "March" };
+            chart.datasets = new List<Datasets>();
+            List<Datasets> _dataSet = new List<Datasets>();
+            _dataSet.Add(new Datasets()
+            {
+                label = "Current Year",
+                data = new int[] { 28, 48, 40, 0 },
+                backgroundColor = new string[] { "#FF0000", "#800000", "#808000" },
+                borderColor = new string[] { "#0000FF", "#000080", "#999999" },
+                borderWidth = "1"
+            });
+            _dataSet.Add(new Datasets()
+            {
+                label = "Current Year",
+                data = new int[] { 50, 10, 20, 0 },
+                backgroundColor = new string[] { "#00FF00" },
+                borderColor = new string[] { "#FF0000", "#800000", "#808000", "#008080", "#800080", "#0000FF", "#000080", "#999999", "#E9967A", "#CD5C5C", "#1A5276", "#27AE60" },
+                borderWidth = "1"
+            });
+            chart.datasets = _dataSet;
+            return Json(chart, JsonRequestBehavior.AllowGet);
         }
         public JsonResult MultiBarChartData()
         {
