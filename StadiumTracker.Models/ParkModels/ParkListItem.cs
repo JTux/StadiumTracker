@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StadiumTracker.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace StadiumTracker.Models.ParkModels
     {
         public int ParkId { get; set; }
         public string ParkName { get; set; }
-        public string TeamName { get; set; }
+        public Team HomeTeam { get; set; }
         public string CityName { get; set; }
         public bool IsVisited { get; set; }
         public bool HasPin { get; set; }

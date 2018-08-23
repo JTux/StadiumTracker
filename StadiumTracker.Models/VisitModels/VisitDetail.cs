@@ -16,8 +16,8 @@ namespace StadiumTracker.Models.VisitModels
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime VisitDate { get; set; }
 
-        public virtual Park Park { get; set; }
-        public virtual Visitor Visitor { get; set; }
+        public Park Park { get; set; }
+        public Visitor Visitor { get; set; }
         //public List<Visitor> VisitorList { get; set; }
 
         public bool GotPin { get; set; }

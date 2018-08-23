@@ -30,6 +30,7 @@ namespace StadiumTracker.Data
         public DbSet<Visitor> Visitors { get; set; }
         public DbSet<Park> Parks { get; set; }
         public DbSet<Visit> Visits { get; set; }
+        public DbSet<Team> Teams { get; set; }
 
         public static ApplicationDbContext Create()
         {

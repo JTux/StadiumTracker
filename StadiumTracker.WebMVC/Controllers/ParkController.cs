@@ -19,9 +19,12 @@ namespace StadiumTracker.WebMVC.Controllers
             return View(service.GetParks());
         }
 
+        private Data.ApplicationDbContext db = new Data.ApplicationDbContext();
         //Create
         public ActionResult Create()
         {
+            ViewBag.TeamId = new SelectList(db.Teams, "TeamId", "TeamName");
+
             return View();
         }
 
@@ -60,7 +63,7 @@ namespace StadiumTracker.WebMVC.Controllers
                 {
                     ParkId = detail.ParkId,
                     ParkName = detail.ParkName,
-                    TeamName = detail.TeamName,
+                    HomeTeam = detail.HomeTeam,
                     CityName = detail.CityName
                 };
             return View(model);

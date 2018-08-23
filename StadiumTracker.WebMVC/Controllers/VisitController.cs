@@ -19,7 +19,7 @@ namespace StadiumTracker.WebMVC.Controllers
             return View(service.GetVisits());
         }
 
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private Data.ApplicationDbContext db = new Data.ApplicationDbContext();
         public ActionResult Create()
         {
             ViewBag.VisitorId = new SelectList(db.Visitors, "VisitorId", "FullName");

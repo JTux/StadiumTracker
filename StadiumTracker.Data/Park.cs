@@ -12,12 +12,6 @@ namespace StadiumTracker.Data
     {
         public Park() { }
 
-        public Park(string name, string teamName)
-        {
-            ParkName = name;
-            TeamName = teamName;
-        }
-
         [Key]
         public int ParkId { get; set; }
 
@@ -28,7 +22,9 @@ namespace StadiumTracker.Data
         public string ParkName { get; set; }
 
         [Required]
-        public string TeamName { get; set; }
+        public int TeamId { get; set; }
+
+        public virtual Team HomeTeam { get; set; }
 
         [Required]
         public string CityName { get; set; }

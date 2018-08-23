@@ -53,16 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201808181609407_InitialCreate.cs" />
-    <Compile Include="Migrations\201808181609407_InitialCreate.Designer.cs">
-      <DependentUpon>201808181609407_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808211447283_addedtotalpins.cs" />
-    <Compile Include="Migrations\201808211447283_addedtotalpins.Designer.cs">
-      <DependentUpon>201808211447283_addedtotalpins.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Park.cs" />
+    <Compile Include="Team.cs" />
     <Compile Include="Visit.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,14 +63,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808181609407_InitialCreate.resx">
-      <DependentUpon>201808181609407_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808211447283_addedtotalpins.resx">
-      <DependentUpon>201808211447283_addedtotalpins.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
