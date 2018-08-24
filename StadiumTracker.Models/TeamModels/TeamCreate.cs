@@ -14,8 +14,6 @@ namespace StadiumTracker.Models.TeamModels
         public string TeamName { get; set; }
 
         [Required]
-        public int MyProperty { get; set; }
-
         public League League { get; set; }
     }
 }

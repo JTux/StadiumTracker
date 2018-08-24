@@ -19,7 +19,7 @@ namespace StadiumTracker.WebMVC.Controllers
             return View(service.GetVisits());
         }
 
-        private Data.ApplicationDbContext db = new Data.ApplicationDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Create()
         {
             ViewBag.VisitorId = new SelectList(db.Visitors, "VisitorId", "FullName");
@@ -42,7 +42,7 @@ namespace StadiumTracker.WebMVC.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ParkId = new SelectList(db.Parks, "ParkId", "ParkName", model.ParkId);
+            //ViewBag.ParkId = new SelectList(db.Parks, "ParkId", "ParkName", model.ParkId);
 
             ModelState.AddModelError("", "Visit could not be added.");
             return View(model);

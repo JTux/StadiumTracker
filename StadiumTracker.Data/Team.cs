@@ -17,6 +17,7 @@ namespace StadiumTracker.Data
         [Required]
         public string TeamName { get; set; }
 
+        [Required]
         public League League { get; set; }
     }
 }

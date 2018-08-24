@@ -1,4 +1,5 @@
-﻿using StadiumTracker.Models.TeamModels;
+﻿using StadiumTracker.Data;
+using StadiumTracker.Models.TeamModels;
 using StadiumTracker.Services;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,8 @@ using System.Web.Mvc;
 
 namespace StadiumTracker.WebMVC.Controllers
 {
-    public class ApplicationDbContext : Controller
+    public class TeamController : Controller
     {
-        // GET: Team
         public ActionResult Index()
         {
             var service = new TeamService();
@@ -19,6 +19,8 @@ namespace StadiumTracker.WebMVC.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.LeagueNames = new SelectList(Enum.GetValues(typeof(League)), "League");
+            
             return View();
         }
 
