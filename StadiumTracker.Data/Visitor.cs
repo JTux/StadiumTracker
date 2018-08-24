@@ -10,7 +10,7 @@ namespace StadiumTracker.Data
     public class Visitor
     {
         public Visitor() { }
-
+        //TODO: Remove unused code.
         public Visitor(string firstName, string lastName)
         {
             FirstName = firstName;
