@@ -17,9 +17,10 @@ namespace StadiumTracker.WebMVC.Controllers
             return View(service.GetTeams());
         }
 
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Create()
         {
-            ViewBag.LeagueNames = new SelectList(Enum.GetValues(typeof(League)), "League");
+            ViewBag.LeagueId = new SelectList(db.Leagues,"LeagueId", "LeagueName");
             
             return View();
         }

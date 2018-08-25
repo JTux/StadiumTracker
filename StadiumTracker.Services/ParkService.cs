@@ -22,6 +22,7 @@ namespace StadiumTracker.Services
             {
                 OwnerId = _userId,
                 ParkName = model.ParkName,
+                TeamId = model.TeamId,
                 HomeTeam = model.HomeTeam,
                 CityName = model.CityName
             };

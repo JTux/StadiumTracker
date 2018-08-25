@@ -9,16 +9,6 @@ namespace StadiumTracker.Data
 {
     public class Visitor
     {
-        public Visitor() { }
-        //TODO: Remove unused code.
-        public Visitor(string firstName, string lastName)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-
-            FullName = $"{FirstName} {LastName}";
-        }
-
         [Key]
         public int VisitorId { get; set; }
 

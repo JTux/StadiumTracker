@@ -7,17 +7,12 @@ using System.Threading.Tasks;
 
 namespace StadiumTracker.Data
 {
-    public class Team
+    public class League
     {
         [Key]
-        public int TeamId { get; set; }
-
-        [Required]
-        public string TeamName { get; set; }
-
-        [Required]
         public int LeagueId { get; set; }
 
-        public virtual League League { get; set; }
+        [Required]
+        public string LeagueName { get; set; }
     }
 }

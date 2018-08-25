@@ -197,6 +197,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BarChartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeagueController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ParkController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
@@ -288,7 +289,15 @@
     <Content Include="Views\Visit\Delete.cshtml" />
     <Content Include="Views\BarChart\Index.cshtml" />
     <Content Include="Views\Team\Index.cshtml" />
+    <Content Include="Views\League\Index.cshtml" />
+    <Content Include="Views\League\Create.cshtml" />
+    <Content Include="Views\League\Details.cshtml" />
+    <Content Include="Views\League\Edit.cshtml" />
+    <Content Include="Views\League\Delete.cshtml" />
     <Content Include="Views\Team\Create.cshtml" />
+    <Content Include="Views\Team\Details.cshtml" />
+    <Content Include="Views\Team\Edit.cshtml" />
+    <Content Include="Views\Team\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -31,6 +31,7 @@ namespace StadiumTracker.Data
         public DbSet<Park> Parks { get; set; }
         public DbSet<Visit> Visits { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<League> Leagues { get; set; }
 
         public static ApplicationDbContext Create()
         {

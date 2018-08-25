@@ -15,7 +15,8 @@ namespace StadiumTracker.Services
             var entity = new Team()
             {
                 TeamName = model.TeamName,
-                League = model.League
+                League = model.League,
+                LeagueId = model.LeagueId,
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -38,6 +39,7 @@ namespace StadiumTracker.Services
                                 {
                                     TeamId = e.TeamId,
                                     TeamName = e.TeamName,
+                                    LeagueId = e.LeagueId,
                                     League = e.League
                                 }
                         );
