@@ -14,11 +14,6 @@ namespace StadiumTracker.Models.ParkModels
         public string ParkName { get; set; }
 
         [Required]
-        public int TeamId { get; set; }
-
-        public virtual Team HomeTeam { get; set; }
-
-        [Required]
         public string CityName { get; set; }
     }
 }

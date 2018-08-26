@@ -54,15 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="League.cs" />
-    <Compile Include="Migrations\201808251736081_InitialCreate.cs" />
-    <Compile Include="Migrations\201808251736081_InitialCreate.Designer.cs">
-      <DependentUpon>201808251736081_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808251745362_addedteamfk.cs" />
-    <Compile Include="Migrations\201808251745362_addedteamfk.Designer.cs">
-      <DependentUpon>201808251745362_addedteamfk.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Park.cs" />
     <Compile Include="Sport.cs" />
     <Compile Include="Team.cs" />
@@ -74,14 +65,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808251736081_InitialCreate.resx">
-      <DependentUpon>201808251736081_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808251745362_addedteamfk.resx">
-      <DependentUpon>201808251745362_addedteamfk.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

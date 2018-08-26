@@ -21,6 +21,7 @@ namespace StadiumTracker.WebMVC.Controllers
         public ActionResult Create()
         {
             ViewBag.LeagueId = new SelectList(db.Leagues,"LeagueId", "LeagueName");
+            ViewBag.ParkId = new SelectList(db.Parks, "ParkID", "ParkName");
             
             return View();
         }
@@ -58,6 +59,7 @@ namespace StadiumTracker.WebMVC.Controllers
                 {
                     TeamId = detail.TeamId,
                     TeamName = detail.TeamName,
+                    Park = detail.Park,
                     League = detail.League
                 };
             return View(model);

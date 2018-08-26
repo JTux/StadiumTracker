@@ -15,8 +15,10 @@ namespace StadiumTracker.Services
             var entity = new Team()
             {
                 TeamName = model.TeamName,
-                League = model.League,
                 LeagueId = model.LeagueId,
+                League = model.League,
+                ParkId = model.ParkId,
+                Park = model.Park
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -39,6 +41,8 @@ namespace StadiumTracker.Services
                                 {
                                     TeamId = e.TeamId,
                                     TeamName = e.TeamName,
+                                    ParkId = e.ParkId,
+                                    Park = e.Park,
                                     LeagueId = e.LeagueId,
                                     League = e.League
                                 }
@@ -57,6 +61,7 @@ namespace StadiumTracker.Services
                     {
                         TeamId = entity.TeamId,
                         TeamName = entity.TeamName,
+                        Park = entity.Park,
                         League = entity.League
                     };
             }
@@ -69,6 +74,7 @@ namespace StadiumTracker.Services
                 var entity = ctx.Teams.Single(e => e.TeamId == model.TeamId);
 
                 entity.TeamName = model.TeamName;
+                entity.Park = model.Park;
                 entity.League = model.League;
 
                 return ctx.SaveChanges() == 1;

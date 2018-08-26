@@ -15,6 +15,9 @@
             @Html.DisplayNameFor(model => model.TeamName)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Park)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.League)
         </th>
         <th></th>
@@ -24,6 +27,9 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.TeamName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Park.ParkName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.League.LeagueName)
