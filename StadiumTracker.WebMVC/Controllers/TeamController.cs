@@ -62,8 +62,6 @@ namespace StadiumTracker.WebMVC.Controllers
                 {
                     TeamId = detail.TeamId,
                     TeamName = detail.TeamName,
-                    //Park = detail.Park,
-                    //League = detail.League
                 };
             return View(model);
         }

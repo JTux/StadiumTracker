@@ -12,9 +12,10 @@ namespace StadiumTracker.Models.VisitModels
         public int VisitId { get; set; }
         public DateTime VisitDate { get; set; }
 
+        public int ParkId { get; set; }
         public Park Park { get; set; }
+        public int VisitorId { get; set; }
         public Visitor Visitor { get; set; }
-        //public virtual List<Visitor> VisitorList { get; set; }
 
         public bool GotPin { get; set; }
         public bool GotPhoto { get; set; }
