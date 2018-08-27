@@ -49,7 +49,8 @@ namespace StadiumTracker.Services
                                     CityName = e.CityName,
                                     IsVisited = e.IsVisited,
                                     HasPin = e.HasPin,
-                                    HasPhoto = e.HasPhoto
+                                    HasPhoto = e.HasPhoto,
+                                    TeamName = (ctx.Teams.FirstOrDefault(p => p.ParkId == e.ParkId)).TeamName
                                 }
                         );
                 return query.ToArray();
@@ -67,7 +68,8 @@ namespace StadiumTracker.Services
                         ParkId = entity.ParkId,
                         ParkName = entity.ParkName,
                         CityName = entity.CityName,
-                        IsVisited = entity.IsVisited
+                        IsVisited = entity.IsVisited,
+                        TeamName = (ctx.Teams.FirstOrDefault(p => p.ParkId == entity.ParkId)).TeamName
                     };
             }
         }

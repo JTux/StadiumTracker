@@ -16,9 +16,7 @@ namespace StadiumTracker.Services
             {
                 TeamName = model.TeamName,
                 LeagueId = model.LeagueId,
-                League = model.League,
                 ParkId = model.ParkId,
-                Park = model.Park
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -74,8 +72,8 @@ namespace StadiumTracker.Services
                 var entity = ctx.Teams.Single(e => e.TeamId == model.TeamId);
 
                 entity.TeamName = model.TeamName;
-                entity.Park = model.Park;
-                entity.League = model.League;
+                entity.Park = ctx.Parks.Single(e=> e.ParkId == model.ParkId);
+                entity.League = ctx.Leagues.Single(e => e.LeagueId == model.LeagueId);
 
                 return ctx.SaveChanges() == 1;
             }
@@ -92,6 +90,5 @@ namespace StadiumTracker.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-
     }
 }
