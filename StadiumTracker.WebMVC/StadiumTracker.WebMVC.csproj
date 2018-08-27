@@ -295,9 +295,9 @@
     <Content Include="Views\League\Edit.cshtml" />
     <Content Include="Views\League\Delete.cshtml" />
     <Content Include="Views\Team\Create.cshtml" />
-    <Content Include="Views\Team\Details.cshtml" />
     <Content Include="Views\Team\Edit.cshtml" />
     <Content Include="Views\Team\Delete.cshtml" />
+    <Content Include="Views\Team\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

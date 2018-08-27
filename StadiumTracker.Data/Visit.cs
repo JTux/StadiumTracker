@@ -10,22 +10,16 @@ namespace StadiumTracker.Data
 {
     public class Visit
     {
-        public Visit() { }
-
-        public Visit(Park park, bool hasPin, bool hasPhoto, DateTime visitDate, Visitor visitor)
-        {
-            VisitDate = visitDate;
-            Park = park;
-            Visitor = visitor;
-            GotPin = hasPin;
-            GotPhoto = hasPhoto;
-        }
-
         [Key]
         public int VisitId { get; set; }
 
         [Required]
         public int ParkId { get; set; }
+
+        [Required]
+        public int AwayTeamId { get; set; }
+
+        public virtual Team AwayTeam { get; set; }
 
         [Required]
         public int VisitorId { get; set; }

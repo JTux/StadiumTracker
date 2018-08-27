@@ -21,6 +21,7 @@ namespace StadiumTracker.WebMVC.Controllers
         public ActionResult Create()
         {
             ViewBag.LeagueId = new SelectList(db.Leagues,"LeagueId", "LeagueName");
+            ViewBag.ParkId = new SelectList(db.Parks, "ParkId", "ParkName");
             
             return View();
         }
@@ -51,6 +52,9 @@ namespace StadiumTracker.WebMVC.Controllers
 
         public ActionResult Edit(int id)
         {
+            ViewBag.LeagueId = new SelectList(db.Leagues, "LeagueId", "LeagueName");
+            ViewBag.ParkId = new SelectList(db.Parks, "ParkId", "ParkName");
+
             var service = new TeamService();
             var detail = service.GetTeamById(id);
             var model =
@@ -58,7 +62,8 @@ namespace StadiumTracker.WebMVC.Controllers
                 {
                     TeamId = detail.TeamId,
                     TeamName = detail.TeamName,
-                    League = detail.League
+                    //Park = detail.Park,
+                    //League = detail.League
                 };
             return View(model);
         }
@@ -67,6 +72,9 @@ namespace StadiumTracker.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, TeamEdit model)
         {
+            ViewBag.LeagueId = new SelectList(db.Leagues, "LeagueId", "LeagueName");
+            ViewBag.ParkId = new SelectList(db.Parks, "ParkId", "ParkName");
+
             if (!ModelState.IsValid) return View(model);
 
             if(model.TeamId != id)

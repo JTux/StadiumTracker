@@ -22,8 +22,6 @@ namespace StadiumTracker.Services
             {
                 OwnerId = _userId,
                 ParkName = model.ParkName,
-                TeamId = model.TeamId,
-                HomeTeam = model.HomeTeam,
                 CityName = model.CityName
             };
 
@@ -48,11 +46,11 @@ namespace StadiumTracker.Services
                                 {
                                     ParkId = e.ParkId,
                                     ParkName = e.ParkName,
-                                    HomeTeam = e.HomeTeam,
                                     CityName = e.CityName,
                                     IsVisited = e.IsVisited,
                                     HasPin = e.HasPin,
-                                    HasPhoto = e.HasPhoto
+                                    HasPhoto = e.HasPhoto,
+                                    TeamName = (ctx.Teams.FirstOrDefault(p => p.ParkId == e.ParkId)).TeamName
                                 }
                         );
                 return query.ToArray();
@@ -69,9 +67,9 @@ namespace StadiumTracker.Services
                     {
                         ParkId = entity.ParkId,
                         ParkName = entity.ParkName,
-                        HomeTeam = entity.HomeTeam,
                         CityName = entity.CityName,
-                        IsVisited = entity.IsVisited
+                        IsVisited = entity.IsVisited,
+                        TeamName = (ctx.Teams.FirstOrDefault(p => p.ParkId == entity.ParkId)).TeamName
                     };
             }
         }
@@ -83,7 +81,6 @@ namespace StadiumTracker.Services
                 var entity = ctx.Parks.Single(e => e.ParkId == model.ParkId && e.OwnerId == _userId);
 
                 entity.ParkName = model.ParkName;
-                entity.HomeTeam = model.HomeTeam;
                 entity.CityName = model.CityName;
 
                 return ctx.SaveChanges() == 1;
