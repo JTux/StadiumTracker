@@ -62,6 +62,11 @@ namespace StadiumTracker.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Parks.Single(e => e.ParkId == parkId && e.OwnerId == _userId);
+
+                var findTeamName = "";
+                if ((ctx.Teams.FirstOrDefault(p => p.ParkId == entity.ParkId)) != null)
+                    findTeamName = (ctx.Teams.FirstOrDefault(p => p.ParkId == entity.ParkId)).TeamName;
+
                 return
                     new ParkDetail
                     {
@@ -69,7 +74,7 @@ namespace StadiumTracker.Services
                         ParkName = entity.ParkName,
                         CityName = entity.CityName,
                         IsVisited = entity.IsVisited,
-                        TeamName = (ctx.Teams.FirstOrDefault(p => p.ParkId == entity.ParkId)).TeamName
+                        TeamName = findTeamName
                     };
             }
         }
