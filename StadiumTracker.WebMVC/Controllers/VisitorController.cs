@@ -126,31 +126,6 @@ namespace StadiumTracker.WebMVC.Controllers
             return RedirectToAction("Index"); 
         }
 
-        public JsonResult StadiumVisitsByPerson(int visitorId)
-        {
-            List<int> newDataList = new List<int>();
-            foreach (Visit visit in db.Visits.Where(e => e.VisitorId == visitorId))
-            {
-                newDataList.Add(visit.VisitDate.Month);
-            }
-
-
-            Chart chart = new Chart();
-            chart.labels = new string[] { "January", "February", "March" };
-            chart.datasets = new List<Datasets>();
-            List<Datasets> _dataSet = new List<Datasets>();
-            _dataSet.Add(new Datasets()
-            {
-                label = "Current Year",
-                data = new int[] { 28, 48, 40, 0 },
-                backgroundColor = new string[] { "#FF0000", "#800000", "#808000" },
-                borderColor = new string[] { "#0000FF", "#000080", "#999999" },
-                borderWidth = "1"
-            });
-            chart.datasets = _dataSet;
-            return Json(chart, JsonRequestBehavior.AllowGet);
-        }
-
         private VisitorService CreateVisitorService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
