@@ -45,26 +45,65 @@ namespace StadiumTracker.WebMVC.Controllers
             return View(model);
         }
 
-         public ActionResult Details(int id)
+        public ActionResult Details(int id)
         {
-            List<int> userDataList = new List<int>();
             int jan = 0, feb = 0, mar = 0, apr = 0, may = 0, jun = 0, jul = 0, aug = 0, sep = 0, oct = 0, nov = 0, dec = 0;
-            foreach (Visit visit in (db.Visits.Where(e => e.VisitorId == id)))
+            int aLeague = 0, nLeague = 0;
+
+            var visitList = db.Visits.Where(p => p.VisitorId == id).ToList();
+
+            foreach (Visit visit in visitList)
             {
-                if (visit.VisitDate.Month == 1) jan++;
-                else if (visit.VisitDate.Month == 2) feb++;
-                else if (visit.VisitDate.Month == 3) mar++;
-                else if (visit.VisitDate.Month == 4) apr++;
-                else if (visit.VisitDate.Month == 5) may++;
-                else if (visit.VisitDate.Month == 6) jun++;
-                else if (visit.VisitDate.Month == 7) jul++;
-                else if (visit.VisitDate.Month == 8) aug++;
-                else if (visit.VisitDate.Month == 9) sep++;
-                else if (visit.VisitDate.Month == 10) oct++;
-                else if (visit.VisitDate.Month == 11) nov++;
-                else if (visit.VisitDate.Month == 12) dec++;
+                switch (visit.VisitDate.Month)
+                {
+                    case 1:
+                        jan++;
+                        break;
+                    case 2:
+                        feb++;
+                        break;
+                    case 3:
+                        mar++;
+                        break;
+                    case 4:
+                        apr++;
+                        break;
+                    case 5:
+                        may++;
+                        break;
+                    case 6:
+                        jun++;
+                        break;
+                    case 7:
+                        jul++;
+                        break;
+                    case 8:
+                        aug++;
+                        break;
+                    case 9:
+                        sep++;
+                        break;
+                    case 10:
+                        oct++;
+                        break;
+                    case 11:
+                        nov++;
+                        break;
+                    case 12:
+                        dec++;
+                        break;
+                }
+                foreach (Team team in (db.Teams.Where(e => e.ParkId == visit.ParkId)))
+                {
+                    if (team.League.LeagueName == "National") nLeague++;
+                    else aLeague++;
+                }
             }
-            ViewBag.UserData = ($"{jan},{feb},{mar},{apr},{may},{jun},{jul},{aug},{sep},{oct},{nov},{dec},0");
+
+
+            ViewBag.MonthData = ($"{jan},{feb},{mar},{apr},{may},{jun},{jul},{aug},{sep},{oct},{nov},{dec},0");
+            ViewBag.LeagueData = ($"{nLeague},{aLeague}");
+
             var service = CreateVisitorService();
             return View(service.GetVisitorById(id));
         }
@@ -123,7 +162,7 @@ namespace StadiumTracker.WebMVC.Controllers
             var service = CreateVisitorService();
             service.DeleteVisitor(id);
             TempData["SaveResult"] = "Visitor was deleted.";
-            return RedirectToAction("Index"); 
+            return RedirectToAction("Index");
         }
 
         private VisitorService CreateVisitorService()
