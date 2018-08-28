@@ -29,27 +29,3 @@ select,
 textarea {
     max-width: 280px;
 }
-.footer-area {
-    width: 100%;
-    margin: auto;
-}
-
-#footer{
-    width: 100%;
-    text-align: center;
-}
-
-.jumbotron {
-    background-color: transparent;
-}
-.jumbotron h1 {
-    margin-bottom: .8em;
-}
-
-.home-descriptions {
-    text-align: center;
-}
-
-.text {
-    text-align: left;
-}

@@ -12,10 +12,5 @@ namespace StadiumTracker.WebMVC.Controllers
         {
             return View();
         }
-
-        public ActionResult About()
-        {
-            return View();
-        }
     }
 }
