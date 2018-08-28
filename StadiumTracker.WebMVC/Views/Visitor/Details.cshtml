@@ -107,24 +107,7 @@
         });
     </script>
     <script>
-        //-------------------Visit by Month Bar Chart---------------------------------
-        var c = document.getElementById("barChart");
-        var ctx = c.getContext("2d");
-        var myBarChart = new Chart(ctx, {
-            type: 'bar',
-            data:
-            {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: 'Games Visited By Month',
-                    data: [@ViewBag.MonthData],
-                    borderWidth: 1
-                }]
-            }
-        });
-    </script>
-    <script>
-        //-------------------Visit by Month Bar Chart---------------------------------
+        //-------------------Visit by League Bar Chart---------------------------------
         var c = document.getElementById("leagueChart");
         var ctx = c.getContext("2d");
         var myBarChart = new Chart(ctx, {
@@ -143,6 +126,23 @@
                         'rgba(0, 0, 0, 1)',
                         'rgba(0, 0, 0, 1)',
                     ],
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
+    <script>
+        //-------------------Visit by  Bar Chart---------------------------------
+        var c = document.getElementById("barChart");
+        var ctx = c.getContext("2d");
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data:
+            {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                datasets: [{
+                    label: 'Games Visited By Month',
+                    data: [@ViewBag.MonthData],
                     borderWidth: 1
                 }]
             }

@@ -100,7 +100,6 @@ namespace StadiumTracker.WebMVC.Controllers
                 }
             }
 
-
             ViewBag.MonthData = ($"{jan},{feb},{mar},{apr},{may},{jun},{jul},{aug},{sep},{oct},{nov},{dec},0");
             ViewBag.LeagueData = ($"{nLeague},{aLeague}");
 
