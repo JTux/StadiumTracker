@@ -30,6 +30,7 @@
             <div class="col-md-10">
                 @Html.DropDownList("ParkId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Park.ParkName, "", new { @class = "text-danger" })
+                <p>@Html.ActionLink("Add New Stadium", "../Park/Create")</p>
             </div>
         </div>
         
@@ -38,6 +39,7 @@
             <div class="col-md-10">
                 @Html.DropDownList("LeagueId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.League.LeagueName, "", new { @class = "text-danger" })
+                <p>@Html.ActionLink("Add New League", "../League/Create")</p>
             </div>
         </div>
 

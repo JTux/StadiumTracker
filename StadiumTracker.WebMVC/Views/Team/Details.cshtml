@@ -4,22 +4,16 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>TeamDetail</h4>
+    <h2>
+        @Html.DisplayFor(model => model.Park.CityName)
+        @Html.DisplayFor(model => model.TeamName)
+    </h2>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TeamName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TeamName)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Park.ParkName)
+            Stadium
         </dt>
 
         <dd>
@@ -27,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.League.LeagueName)
+            League
         </dt>
 
         <dd>

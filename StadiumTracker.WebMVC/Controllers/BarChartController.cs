@@ -1,4 +1,5 @@
-﻿using StadiumTracker.Models;
+﻿using StadiumTracker.Data;
+using StadiumTracker.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace StadiumTracker.WebMVC.Controllers
     public class BarChartController : Controller
     {
         // GET: BarChart
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
             return View();
@@ -32,8 +35,13 @@ namespace StadiumTracker.WebMVC.Controllers
             _chart.datasets = _dataSet;
             return Json(_chart, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult StadiumVisitsByPerson()
+        public JsonResult StadiumVisitsByPerson(int id)
         {
+            List<int> newDataList = new List<int>();
+            //foreach(Visit visit in db.Visits.Where(e => e.VisitorId == visitorId))
+            //{
+            //}
+
 
             Chart chart = new Chart();
             chart.labels = new string[] { "January", "February", "March" };
