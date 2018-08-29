@@ -10,6 +10,7 @@ html, body, #body-container {
 
 body {
     padding: 0;
+    background-color: #8F9925;
 }
 
 .body-container {
@@ -19,43 +20,6 @@ body {
     height:100%;
 }
 
-#main-nav {
-    border-radius: 0;
-    border: none;
-    margin: 0;
-    text-align: center;
-}
-
-.navbar-name {
-    vertical-align: middle;
-    width: 100%;
-    height: 50px;
-    margin: auto;
-}
-
-.navbar-name a {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 10px 0;
-    font-size: 25px;
-    color: white;
-    text-decoration: none;
-}
-
-.navbar-name a:hover{
-    color: #9d9d9d;
-}
-
-#side-nav {
-    padding: 0;
-}
-
-#belowNav {
-    position: relative;
-    height: 100%;
-    padding-top: 50px;
-}
-
 .fixed-right {
     height: 100%;
     display: inline-block;
@@ -63,7 +27,7 @@ body {
     z-index: 1031;
     top: 0px;
     right: 0;
-    padding: 40px 0 0 0;
+    padding: 0;
 }
 
 .fixed-right ul {
@@ -85,7 +49,6 @@ body {
 
 .fixed-right a:hover {
     color: white;
-    font-weight: bold;
     background-color: #64826a;
 }
 
@@ -93,20 +56,35 @@ body {
     background-color: #2F3C32;
 }
 
+.navbar-name a {
+    font-size: 25px;
+    color: white;
+    margin: 0 0 20px 0;
+    border-top: none;
+    border-left: none;
+}
+
+#side-nav {
+    padding: 0;
+}
+
+#belowNav {
+    position: relative;
+    height: 100%;
+}
+
 .scroll-content {
-    background-image: url(Images/background.jpg);
+    background-image: url(Images/background.png);
     background-repeat: no-repeat;
     background-position: top center;
     height: 100%;
     padding: 0;
-    overflow-x:scroll;
-    border-top: 2px solid white;
     border-right: 2px solid white;
 }
 
 .body-content {
     background-color: white;
-    background-color: rgba(255,255,255, .6);
+    background-color: rgba(255,255,255, .8);
     margin: auto;
     height: 100%;
     width: 90%;

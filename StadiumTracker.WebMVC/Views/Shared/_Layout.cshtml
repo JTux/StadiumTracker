@@ -11,15 +11,11 @@
 </head>
 <body>
     <div class="container body-container">
-
-        <div class="navbar navbar-inverse navbar-fixed-top navbar-details" id="main-nav">
-            <div class="navbar-name">
-                @Html.ActionLink("Stadium Tracker", "Index", "Home")
-            </div>
-        </div>
-
         <div id="belowNav">
-            <div class="col-lg-1 col-md-1 fixed-right navbar-details">
+            <div class="col-lg-2 col-md-2 fixed-right navbar-details">
+                <div class="navbar-name">
+                    @Html.ActionLink("Stadium Tracker", "Index", "Home")
+                </div>
                 <ul>
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -32,7 +28,7 @@
                     }
                 </ul>
                 <div class="row">
-                    <div class="col-lg-1 col-md-1" id="footer">
+                    <div class="col-lg-2 col-md-2" id="footer">
                         @Html.Partial("_LoginPartial")
                         <footer>
                             <p>&copy; @DateTime.Now.Year</p>
@@ -40,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-11 col-md-11 scroll-content">
+            <div class="col-lg-10 col-md-10 scroll-content">
                 <div class="container body-content">
                     @RenderBody()
                 </div>
