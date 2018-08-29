@@ -54,6 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="League.cs" />
+    <Compile Include="Migrations\201808261700187_InitialCreate.cs" />
+    <Compile Include="Migrations\201808261700187_InitialCreate.Designer.cs">
+      <DependentUpon>201808261700187_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Park.cs" />
     <Compile Include="Sport.cs" />
     <Compile Include="Team.cs" />
@@ -65,6 +70,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808261700187_InitialCreate.resx">
+      <DependentUpon>201808261700187_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

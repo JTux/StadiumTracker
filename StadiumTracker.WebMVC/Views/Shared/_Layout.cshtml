@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using StadiumTracker.WebMVC.Helpers
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,43 +8,47 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="~/Content/Style.css">
-
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Stadium Tracker", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div class="container body-container">
+
+        <div class="navbar navbar-inverse navbar-fixed-top navbar-details" id="main-nav">
+            <div class="navbar-name">
+                @Html.ActionLink("Stadium Tracker", "Index", "Home")
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+        </div>
+
+        <div id="belowNav">
+            <div class="col-lg-1 col-md-1 fixed-right navbar-details">
+                <ul>
                     @if (User.Identity.IsAuthenticated)
                     {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "Index", "Park")</li>
                         <li>@Html.ActionLink("Stadiums", "Index", "Park")</li>
                         <li>@Html.ActionLink("Teams", "Index", "Team")</li>
-                        <li>@Html.ActionLink("Visits", "Index", "Visit")</li>
+                        <li>@Html.ActionLink("History", "Index", "Visit")</li>
                         <li>@Html.ActionLink("Stats", "Index", "Visitor")</li>
                     }
                 </ul>
-                @Html.Partial("_LoginPartial")
+                <div class="row">
+                    <div class="col-lg-1 col-md-1" id="footer">
+                        @Html.Partial("_LoginPartial")
+                        <footer>
+                            <p>&copy; @DateTime.Now.Year</p>
+                        </footer>
+                    </div>
+                </div>
             </div>
+            <div class="col-lg-11 col-md-11 scroll-content">
+                <div class="container body-content">
+                    @RenderBody()
+                </div>
+            </div>
+
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-    </div>
-    <div class="row footer-area">
-        <div class="col-md-12">
-            <footer id="footer">
-                <hr>
-                <p>&copy; @DateTime.Now.Year - Stadium Visit Tracker</p>
-            </footer>
-        </div>
+
+
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

@@ -111,5 +111,81 @@ namespace StadiumTracker.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public string GetLeagueDataById(int id)
+        {
+            int aLeague = 0, nLeague = 0;
+            var visitList = GetVisitsById(id);
+
+            foreach (Visit visit in visitList)
+            {
+                foreach (Team team in (db.Teams.Where(e => e.ParkId == visit.ParkId)))
+                {
+                    if (team.League.LeagueName == "National") nLeague++;
+                    else aLeague++;
+                }
+            }
+
+            return ($"{nLeague},{aLeague}");
+        }
+
+        public string GetMonthDataById(int id)
+        {
+            int jan = 0, feb = 0, mar = 0, apr = 0, may = 0, jun = 0, jul = 0, aug = 0, sep = 0, oct = 0, nov = 0, dec = 0;
+            var visitList = GetVisitsById(id);
+
+            foreach (Visit visit in visitList)
+            {
+                switch (visit.VisitDate.Month)
+                {
+                    case 1:
+                        jan++;
+                        break;
+                    case 2:
+                        feb++;
+                        break;
+                    case 3:
+                        mar++;
+                        break;
+                    case 4:
+                        apr++;
+                        break;
+                    case 5:
+                        may++;
+                        break;
+                    case 6:
+                        jun++;
+                        break;
+                    case 7:
+                        jul++;
+                        break;
+                    case 8:
+                        aug++;
+                        break;
+                    case 9:
+                        sep++;
+                        break;
+                    case 10:
+                        oct++;
+                        break;
+                    case 11:
+                        nov++;
+                        break;
+                    case 12:
+                        dec++;
+                        break;
+                }
+            }
+
+            return ($"{jan},{feb},{mar},{apr},{may},{jun},{jul},{aug},{sep},{oct},{nov},{dec},0");
+        }
+
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        private List<Visit> GetVisitsById(int id)
+        {
+            var visitList = db.Visits.Where(p => p.VisitorId == id).ToList();
+            return visitList;
+        }
     }
 }

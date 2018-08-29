@@ -53,9 +53,7 @@
             @Html.DisplayFor(modelItem => item.HasPhoto)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ParkId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ParkId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ParkId })
+            @Html.ActionLink("Details", "Details", new { id = item.ParkId })
         </td>
     </tr>
 }

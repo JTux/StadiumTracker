@@ -54,7 +54,9 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Delete", "Delete", new { id = Model.VisitId }) |
+    @Html.ActionLink("Back to Visit", "Details",new { id = Model.VisitId })
+
 </div>
 
 @section Scripts {

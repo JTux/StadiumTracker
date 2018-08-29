@@ -1,28 +1,131 @@
-﻿.detail-buttons {
-    text-align: right;
+﻿*{
+    padding: 0;
+    margin: 0;
 }
 
-.footer-area {
-    width: 100%;
-    margin: auto;
+html, body, #body-container {
+    min-height: 100% !important;
+    height: 100%;
 }
 
-#footer{
+body {
+    padding: 0;
+}
+
+.body-container {
+    margin: 0;
+    padding: 0;
     width: 100%;
+    height:100%;
+}
+
+#main-nav {
+    border-radius: 0;
+    border: none;
+    margin: 0;
     text-align: center;
 }
 
-.jumbotron {
-    background-color: transparent;
+.navbar-name {
+    vertical-align: middle;
+    width: 100%;
+    height: 50px;
+    margin: auto;
 }
-.jumbotron h1 {
-    margin-bottom: .8em;
+
+.navbar-name a {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px 0;
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-name a:hover{
+    color: #9d9d9d;
+}
+
+#side-nav {
+    padding: 0;
+}
+
+#belowNav {
+    position: relative;
+    height: 100%;
+    padding-top: 50px;
+}
+
+.fixed-right {
+    height: 100%;
+    display: inline-block;
+    position: fixed;
+    z-index: 1031;
+    top: 0px;
+    right: 0;
+    padding: 40px 0 0 0;
+}
+
+.fixed-right ul {
+    list-style: none;
+    width: 75%;
+    margin: auto;
+}
+
+.fixed-right a {
+    border: 1px solid white;
+    margin: 10px 0;
+    padding: 6px 8px;
+    text-align:center;
+    text-decoration: none;
+    background-color: #3e5142;
+    color: White;
+    display: block;
+}
+
+.fixed-right a:hover {
+    color: white;
+    font-weight: bold;
+    background-color: #64826a;
+}
+
+.navbar-details {
+    background-color: #2F3C32;
+}
+
+.scroll-content {
+    background-image: url(Images/background.jpg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    height: 100%;
+    padding: 0;
+    overflow-x:scroll;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+}
+
+.body-content {
+    background-color: white;
+    background-color: rgba(255,255,255, .6);
+    margin: auto;
+    height: 100%;
+    width: 90%;
+}
+
+#footer{
+    text-align: center;
+    position: fixed;
+    right: 0;
+    bottom:0;
+    padding: 0;
+    margin:0;
+    color: darkgray;
 }
 
 .home-descriptions {
     text-align: center;
 }
 
-.text {
+.description-text {
     text-align: left;
 }
