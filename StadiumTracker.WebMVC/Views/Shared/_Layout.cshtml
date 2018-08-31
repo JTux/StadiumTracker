@@ -20,7 +20,7 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "Index", "Park")</li>
+                        @*<li>@Html.ActionLink("About", "Index", "Park")</li>*@
                         <li>@Html.ActionLink("Stadiums", "Index", "Park")</li>
                         <li>@Html.ActionLink("Teams", "Index", "Team")</li>
                         <li>@Html.ActionLink("History", "Index", "Visit")</li>
@@ -31,7 +31,7 @@
                     <div class="col-lg-2 col-md-2" id="footer">
                         @Html.Partial("_LoginPartial")
                         <footer>
-                            <p>&copy; @DateTime.Now.Year</p>
+                            <p>&copy; @DateTime.Now.Year Stadium Tracker</p>
                         </footer>
                     </div>
                 </div>

@@ -20,8 +20,14 @@ namespace StadiumTracker.WebMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Create()
         {
-            ViewBag.LeagueId = new SelectList(db.Leagues,"LeagueId", "LeagueName");
-            ViewBag.ParkId = new SelectList(db.Parks, "ParkId", "ParkName");
+            var newParkList = new SelectList(db.Parks, "ParkId", "ParkName").ToList();
+            var sortedParkList = newParkList.OrderBy(o => o.Text);
+
+            var newLeagueList = new SelectList(db.Leagues, "LeagueId", "LeagueName").ToList();
+            var sortedLeagueList = newLeagueList.OrderBy(o => o.Text);
+
+            ViewBag.LeagueId = sortedLeagueList;
+            ViewBag.ParkId = sortedParkList;
             
             return View();
         }

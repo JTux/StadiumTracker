@@ -45,7 +45,9 @@ namespace StadiumTracker.Services
                                     League = e.League
                                 }
                         );
-                return query.ToArray();
+                var queryArray = query.ToArray();
+                Array.Sort(queryArray, delegate (TeamListItem team1, TeamListItem team2) { return team1.TeamName.CompareTo(team2.TeamName); });
+                return queryArray;
             }
         }
 

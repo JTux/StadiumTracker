@@ -10,7 +10,9 @@ html, body, #body-container {
 
 body {
     padding: 0;
-    background-color: #8F9925;
+    background-color: rgba(170,168,57,.7);
+    background-image: linear-gradient(to bottom, #AAA839, white);
+    background-attachment: fixed;
 }
 
 .body-container {
@@ -24,10 +26,11 @@ body {
     height: 100%;
     display: inline-block;
     position: fixed;
-    z-index: 1031;
+    z-index: 1;
     top: 0px;
     right: 0;
     padding: 0;
+    border-left: 2px solid white;
 }
 
 .fixed-right ul {
@@ -60,8 +63,8 @@ body {
     font-size: 25px;
     color: white;
     margin: 0 0 20px 0;
-    border-top: none;
-    border-left: none;
+    border: none;
+    border-bottom: 1px solid white;
 }
 
 #side-nav {
@@ -79,15 +82,128 @@ body {
     background-position: top center;
     height: 100%;
     padding: 0;
-    border-right: 2px solid white;
 }
 
 .body-content {
-    background-color: white;
-    background-color: rgba(255,255,255, .8);
     margin: auto;
-    height: 100%;
+    min-height: 100%;
     width: 90%;
+    padding-top: 30px;
+    max-width: 900px;
+    background-color: rgba(255,255,255, .8);
+}
+
+#page-header {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-shadow:0px 0px 2px black;
+}
+
+.item-box {
+    color: white;
+    padding: 0;
+}
+
+.item-container {
+    padding: 5px 10px 10px 10px;
+    background-color: white;
+    border: solid 1px black;
+    margin: 3px;
+}
+
+.grid-width{
+    max-width:100%;
+}
+
+.grid-row{
+    max-width:100%;
+    margin:0;
+}
+
+.item-grid {
+    margin: auto;
+    border: solid 2px black;
+    background-color: #2F3C32;
+    padding: 10px;
+    min-height: 140px;
+}
+
+.item-grid p {
+    max-width: 65%;
+}
+
+.content-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #2F3C32;
+}
+
+.item-details {
+    position: absolute;
+    bottom: 20px;
+    right: 35px;
+    border: solid 1px white;
+    padding: 0 4px;
+    background-color: #3e5142;
+    font-weight: bold;
+}
+
+.item-details:hover {
+    background-color: #64826a;
+}
+
+.item-details a {
+    text-decoration: none;
+    color: white;
+}
+
+.item-image {
+    position: absolute;
+    top: 45px;
+    right: 25px;
+    width: 75px;
+    height: 75px;
+    background-color: white;
+    border-radius: 50%;
+    text-align:center;
+}
+
+.item-image a {
+    position: absolute;
+    top: 25px;
+    right: 22px;
+}
+
+.stadium-image {
+    background-image: url(/Content/Images/stadium-icon.png);
+    background-size: contain;
+    border: solid 2px black;
+}
+
+.stadium-image-team {
+    background-image: url(/Content/Images/inverted-stadium-icon.png);
+    background-size: contain;
+    border: solid 2px black;
+}
+
+.national-team {
+    border-color: red;
+    background-color: red;
+}
+
+.american-team {
+    border-color: blue;
+    background-color: blue;
+}
+
+.content-item {
+    font-weight: bold;
+}
+
+.create-new a {
+    color: #88ad90;
+    text-decoration: none;
 }
 
 #footer{

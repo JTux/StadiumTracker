@@ -50,10 +50,14 @@ namespace StadiumTracker.Services
                                     IsVisited = e.IsVisited,
                                     HasPin = e.HasPin,
                                     HasPhoto = e.HasPhoto,
-                                    TeamName = (ctx.Teams.FirstOrDefault(p => p.ParkId == e.ParkId)).TeamName
+                                    TeamName = (ctx.Teams.FirstOrDefault(p => p.ParkId == e.ParkId)).TeamName,
+                                    VisitCount = e.VisitCount,
+                                    LeagueId = (ctx.Teams.FirstOrDefault(p=>p.ParkId == e.ParkId)).LeagueId
                                 }
                         );
-                return query.ToArray();
+                var queryArray = query.ToArray();
+                Array.Sort(queryArray,delegate(ParkListItem park1, ParkListItem park2) { return park1.ParkName.CompareTo(park2.ParkName); });
+                return queryArray;
             }
         }
         
