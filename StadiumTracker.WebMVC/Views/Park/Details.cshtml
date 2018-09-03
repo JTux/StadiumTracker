@@ -3,20 +3,13 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
+<h2 id="page-header">
+    @Html.DisplayFor(model => model.ParkName)
+</h2>
 
 <div class="col-lg-5">
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            Stadium Name
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ParkName)
-        </dd>
-
         <dt>
             City Name
         </dt>

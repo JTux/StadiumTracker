@@ -58,9 +58,6 @@ namespace StadiumTracker.WebMVC.Controllers
 
         public ActionResult Edit(int id)
         {
-            ViewBag.LeagueId = new SelectList(db.Leagues, "LeagueId", "LeagueName");
-            ViewBag.ParkId = new SelectList(db.Parks, "ParkId", "ParkName");
-
             var service = new TeamService();
             var detail = service.GetTeamById(id);
             var model =
@@ -69,6 +66,18 @@ namespace StadiumTracker.WebMVC.Controllers
                     TeamId = detail.TeamId,
                     TeamName = detail.TeamName,
                 };
+
+            var newParkList = new SelectList(db.Parks, "ParkId", "ParkName").ToList();
+            var sortedParkList = newParkList.OrderBy(o => o.Text);
+
+            var newLeagueList = new SelectList(db.Leagues, "LeagueId", "LeagueName").ToList();
+            var sortedLeagueList = newLeagueList.OrderBy(o => o.Text);
+
+            ViewBag.LeagueId = sortedLeagueList;
+            ViewBag.ParkId = sortedParkList;
+            ViewBag.ParkInfo = detail.Park.ParkName;
+            ViewBag.LeagueInfo = detail.League.LeagueName;
+
             return View(model);
         }
 

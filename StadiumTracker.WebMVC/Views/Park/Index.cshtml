@@ -4,40 +4,50 @@
     ViewBag.Title = "Index";
 }
 
-<h2 id="page-header">Existing Stadiums</h2>
+<h2 id="page-header">Stadiums</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <div class="container grid-width">
+        <div class="row grid-row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-4 item-box">
+                    <div class="item-container">
+                        @if (item.LeagueId == null)
+                        {<span class="content-name">
+                                @Html.DisplayFor(modelItem => item.ParkName)
+                            </span>}
+                        @if (item.LeagueId == 1)
+                        {<span class="content-name national-name">
+                                @Html.DisplayFor(modelItem => item.ParkName)
+                            </span>}
+                        @if (item.LeagueId == 2)
+                        {<span class="content-name american-name">
+                                @Html.DisplayFor(modelItem => item.ParkName)
+                            </span>}
+                        <div class="item-grid">
+                            <p>
+                                <span class="content-item">City:</span> @Html.DisplayFor(modelItem => item.CityName)<br />
+                                <span class="content-item">Team:</span> @Html.DisplayFor(modelItem => item.TeamName)
+                                @if (item.TeamName == null)
+                                {<span class="create-new">@Html.ActionLink("Create Team", "../Team/Create")</span>}<br />
+                                <br />
+                                <span class="content-item">Visit count:</span> @Html.DisplayFor(modelItem => item.VisitCount)<br />
+                                <span class="content-item">Pin</span> @Html.DisplayFor(modelItem => item.HasPin)
+                                <span class="content-item">Photo</span> @Html.DisplayFor(modelItem => item.HasPhoto) <br />
 
-<div class="container grid-width">
-    <div class="row grid-row">
-        @foreach (var item in Model)
-        {
-            <div class="col-lg-4 col-md-4 item-box">
-                <div class="item-container">
-                    <span class="content-name"> @Html.DisplayFor(modelItem => item.ParkName)</span>
-                    <div class="item-grid">
-                        <p>
-                            <span class="content-item">City:</span> @Html.DisplayFor(modelItem => item.CityName)<br />
-                            <span class="content-item">Team:</span> @Html.DisplayFor(modelItem => item.TeamName)
-                            @if (item.TeamName == null)
-                            {<span class="create-new">@Html.ActionLink("Create Team", "../Team/Create")</span>}<br />
-                            <br />
-                            <span class="content-item">Visit count:</span> @Html.DisplayFor(modelItem => item.VisitCount)<br />
-                            <span class="content-item">Pin</span> @Html.DisplayFor(modelItem => item.HasPin)
-                            <span class="content-item">Photo</span> @Html.DisplayFor(modelItem => item.HasPhoto) <br />
+                                @if (item.LeagueId == null)
+                                {<span class="item-image stadium-image"></span>}
+                                @if (item.LeagueId == 1)
+                                {<span class="item-image stadium-image-team national-team"></span>}
+                                @if (item.LeagueId == 2)
+                                {<span class="item-image stadium-image-team american-team"></span>}
 
-                            @if (item.LeagueId == null) { <span class="item-image stadium-image"></span> }
-                            @if (item.LeagueId == 1) { <span class="item-image stadium-image-team national-team"></span> }
-                            @if (item.LeagueId == 2) { <span class="item-image stadium-image-team american-team"></span> }
-                            
-                            
-                            <span class="item-details">@Html.ActionLink("Details", "Details", new { id = item.ParkId })</span>
-                        </p>
+
+                                <span class="item-details">@Html.ActionLink("Details", "Details", new { id = item.ParkId })</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
-</div>

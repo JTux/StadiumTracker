@@ -20,6 +20,7 @@ namespace StadiumTracker.WebMVC.Controllers
         }
 
         private Data.ApplicationDbContext db = new Data.ApplicationDbContext();
+
         //Create
         public ActionResult Create()
         {

@@ -1,0 +1,12 @@
+﻿@using StadiumTracker.WebMVC.Helpers
+
+@{
+    var name = Html.CurrentViewName();
+    var controller = Html.ControllerName();
+    if (name == "Index" && controller != "HomeController")
+    {
+        <p>
+            @Html.ActionLink("Add New", "Create")
+        </p>
+    }
+}

@@ -11,6 +11,8 @@ namespace StadiumTracker.Services
 {
     public class VisitorService : IVisitorService
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         private readonly Guid _userId;
         public VisitorService() { }
         public VisitorService(Guid userId)
@@ -179,8 +181,6 @@ namespace StadiumTracker.Services
 
             return ($"{jan},{feb},{mar},{apr},{may},{jun},{jul},{aug},{sep},{oct},{nov},{dec},0");
         }
-
-        private ApplicationDbContext db = new ApplicationDbContext();
 
         private List<Visit> GetVisitsById(int id)
         {

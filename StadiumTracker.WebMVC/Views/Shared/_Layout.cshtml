@@ -23,8 +23,12 @@
                         @*<li>@Html.ActionLink("About", "Index", "Park")</li>*@
                         <li>@Html.ActionLink("Stadiums", "Index", "Park")</li>
                         <li>@Html.ActionLink("Teams", "Index", "Team")</li>
-                        <li>@Html.ActionLink("History", "Index", "Visit")</li>
-                        <li>@Html.ActionLink("Stats", "Index", "Visitor")</li>
+                        <li>@Html.ActionLink("Visits", "Index", "Visit")</li>
+                        <li>@Html.ActionLink("People", "Index", "Visitor")</li>
+                        <li><br /> </li>
+                        <li><br /> </li>
+                        <li>@Html.Partial("_CreateView")</li>
+                        <li>@Html.Partial("_LeaguePartial")</li>
                     }
                 </ul>
                 <div class="row">

@@ -4,11 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2 id="page-header">Existing Teams</h2>
+<h2 id="page-header">Teams</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@{ 
+    ViewBag.Options = @Html.ActionLink("Create New", "Create");
+}
 
 <div class="container grid-width">
     <div class="row grid-row">
@@ -16,9 +16,14 @@
         {
             <div class="col-lg-4 col-md-4 item-box">
                 <div class="item-container">
-                    <span class="content-name">
-                        @Html.DisplayFor(modelItem => item.TeamName)
-                    </span>
+                    @if (item.LeagueId == 1)
+                    {<span class="content-name national-name">
+                            @Html.DisplayFor(modelItem => item.TeamName)
+                        </span>}
+                    @if (item.LeagueId == 2)
+                    {<span class="content-name american-name">
+                            @Html.DisplayFor(modelItem => item.TeamName)
+                        </span>}
                     <div class="item-grid">
                         <p>
                             <span class="content-item">League:</span>
