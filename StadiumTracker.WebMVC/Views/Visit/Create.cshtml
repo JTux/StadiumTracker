@@ -30,7 +30,6 @@
                 @Html.DropDownList("VisitorId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Visitor.FullName, "", new { @class = "text-danger" })
                 <p>@Html.ActionLink("Add New Person", "../Visitor/Create")</p>
-
             </div>
         </div>
 

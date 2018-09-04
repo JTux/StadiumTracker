@@ -10,8 +10,6 @@ namespace StadiumTracker.Data
 {
     public class Park
     {
-        public Park() { }
-
         [Key]
         public int ParkId { get; set; }
 

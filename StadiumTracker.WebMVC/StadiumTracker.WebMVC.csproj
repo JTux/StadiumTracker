@@ -302,6 +302,7 @@
     <Content Include="Views\Team\Details.cshtml" />
     <Content Include="Views\Shared\_CreateView.cshtml" />
     <Content Include="Views\Shared\_EditView.cshtml" />
+    <Content Include="Views\Shared\_LeaguePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
