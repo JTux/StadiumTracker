@@ -22,8 +22,19 @@ namespace StadiumTracker.WebMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Create()
         {
-            ViewBag.VisitorId = new SelectList(db.Visitors, "VisitorId", "FullName");
-            ViewBag.ParkId = new SelectList(db.Parks, "ParkId", "ParkName");
+            var unsortedVisitorList = new SelectList(db.Visitors, "VisitorId", "FullName");
+            var visitorList = unsortedVisitorList.OrderBy(o => o.Text);
+
+            var unsortedParkList = new SelectList(db.Parks, "ParkId", "ParkName");
+            var parkList = unsortedParkList.OrderBy(o => o.Text);
+
+            var unsortedTeamList = new SelectList(db.Teams, "TeamId", "TeamName");
+            var teamList = unsortedTeamList.OrderBy(o => o.Text);
+
+            ViewBag.VisitorId = visitorList;
+            ViewBag.ParkId = parkList;
+            ViewBag.HomeTeamId = teamList;
+            ViewBag.AwayTeamId = teamList;
 
             return View();
         }
@@ -41,8 +52,6 @@ namespace StadiumTracker.WebMVC.Controllers
                 TempData["SaveResult"] = "New Visit Added";
                 return RedirectToAction("Index");
             }
-
-            //ViewBag.ParkId = new SelectList(db.Parks, "ParkId", "ParkName", model.ParkId);
 
             ModelState.AddModelError("", "Visit could not be added.");
             return View(model);
@@ -63,6 +72,8 @@ namespace StadiumTracker.WebMVC.Controllers
                 {
                     VisitId = detail.VisitId,
                     Park = detail.Park,
+                    HomeTeam = detail.HomeTeam,
+                    AwayTeam = detail.AwayTeam,
                     Visitor = detail.Visitor,
                     VisitDate = detail.VisitDate,
                     GotPin = detail.GotPin,

@@ -10,17 +10,10 @@ namespace StadiumTracker.Services
 {
     public class ParkService
     {
-        private readonly Guid _userId;
-        public ParkService(Guid userId)
-        {
-            _userId = userId;
-        }
-
         public bool CreatePark(ParkCreate model)
         {
             var entity = new Park()
             {
-                OwnerId = _userId,
                 ParkName = model.ParkName,
                 CityName = model.CityName
             };
@@ -39,7 +32,6 @@ namespace StadiumTracker.Services
                 var query =
                     ctx
                         .Parks
-                        .Where(e => e.OwnerId == _userId)
                         .Select(
                             e =>
                                 new ParkListItem
@@ -50,26 +42,20 @@ namespace StadiumTracker.Services
                                     IsVisited = e.IsVisited,
                                     HasPin = e.HasPin,
                                     HasPhoto = e.HasPhoto,
-                                    TeamName = (ctx.Teams.FirstOrDefault(p => p.ParkId == e.ParkId)).TeamName,
                                     VisitCount = e.VisitCount,
-                                    LeagueId = (ctx.Teams.FirstOrDefault(p=>p.ParkId == e.ParkId)).LeagueId
                                 }
                         );
                 var queryArray = query.ToArray();
-                Array.Sort(queryArray,delegate(ParkListItem park1, ParkListItem park2) { return park1.ParkName.CompareTo(park2.ParkName); });
+                Array.Sort(queryArray, delegate (ParkListItem park1, ParkListItem park2) { return park1.ParkName.CompareTo(park2.ParkName); });
                 return queryArray;
             }
         }
-        
+
         public ParkDetail GetParkById(int parkId)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Parks.Single(e => e.ParkId == parkId && e.OwnerId == _userId);
-
-                var findTeamName = "";
-                if ((ctx.Teams.FirstOrDefault(p => p.ParkId == entity.ParkId)) != null)
-                    findTeamName = (ctx.Teams.FirstOrDefault(p => p.ParkId == entity.ParkId)).TeamName;
+                var entity = ctx.Parks.Single(e => e.ParkId == parkId);
 
                 return
                     new ParkDetail
@@ -78,7 +64,6 @@ namespace StadiumTracker.Services
                         ParkName = entity.ParkName,
                         CityName = entity.CityName,
                         IsVisited = entity.IsVisited,
-                        TeamName = findTeamName
                     };
             }
         }
@@ -87,7 +72,7 @@ namespace StadiumTracker.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Parks.Single(e => e.ParkId == model.ParkId && e.OwnerId == _userId);
+                var entity = ctx.Parks.Single(e => e.ParkId == model.ParkId);
 
                 entity.ParkName = model.ParkName;
                 entity.CityName = model.CityName;
@@ -100,7 +85,7 @@ namespace StadiumTracker.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Parks.Single(e => e.ParkId == parkId && e.OwnerId == _userId);
+                var entity = ctx.Parks.Single(e => e.ParkId == parkId);
 
                 ctx.Parks.Remove(entity);
 

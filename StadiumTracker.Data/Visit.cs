@@ -17,9 +17,10 @@ namespace StadiumTracker.Data
         public int ParkId { get; set; }
 
         [Required]
-        public int AwayTeamId { get; set; }
+        public int HomeTeamId { get; set; }
 
-        public virtual Team AwayTeam { get; set; }
+        [Required]
+        public int AwayTeamId { get; set; }
 
         [Required]
         public int VisitorId { get; set; }
@@ -28,6 +29,8 @@ namespace StadiumTracker.Data
         public DateTime VisitDate { get; set; }
 
         public virtual Park Park { get; set; }
+        public virtual Team HomeTeam { get; set; }
+        public virtual Team AwayTeam { get; set; }
         public virtual Visitor Visitor { get; set; }
 
         [Required]

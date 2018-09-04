@@ -20,14 +20,14 @@ namespace StadiumTracker.WebMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Create()
         {
-            var newParkList = new SelectList(db.Parks, "ParkId", "ParkName").ToList();
-            var sortedParkList = newParkList.OrderBy(o => o.Text);
-
             var newLeagueList = new SelectList(db.Leagues, "LeagueId", "LeagueName").ToList();
             var sortedLeagueList = newLeagueList.OrderBy(o => o.Text);
 
+            var newTeamList = new SelectList(db.Teams, "TeamId", "TeamName").ToList();
+            var sortedTeamList = newTeamList.OrderBy(o => o.Text);
+
+            ViewBag.TeamId = sortedTeamList;
             ViewBag.LeagueId = sortedLeagueList;
-            ViewBag.ParkId = sortedParkList;
             
             return View();
         }
@@ -67,15 +67,14 @@ namespace StadiumTracker.WebMVC.Controllers
                     TeamName = detail.TeamName,
                 };
 
-            var newParkList = new SelectList(db.Parks, "ParkId", "ParkName").ToList();
-            var sortedParkList = newParkList.OrderBy(o => o.Text);
-
             var newLeagueList = new SelectList(db.Leagues, "LeagueId", "LeagueName").ToList();
             var sortedLeagueList = newLeagueList.OrderBy(o => o.Text);
 
+            var newTeamList = new SelectList(db.Teams, "TeamId", "TeamName").ToList();
+            var sortedTeamList = newTeamList.OrderBy(o => o.Text);
+
             ViewBag.LeagueId = sortedLeagueList;
-            ViewBag.ParkId = sortedParkList;
-            ViewBag.ParkInfo = detail.Park.ParkName;
+            ViewBag.TeamId = sortedTeamList;
             ViewBag.LeagueInfo = detail.League.LeagueName;
 
             return View(model);
@@ -86,7 +85,7 @@ namespace StadiumTracker.WebMVC.Controllers
         public ActionResult Edit(int id, TeamEdit model)
         {
             ViewBag.LeagueId = new SelectList(db.Leagues, "LeagueId", "LeagueName");
-            ViewBag.ParkId = new SelectList(db.Parks, "ParkId", "ParkName");
+            ViewBag.TeamId = new SelectList(db.Teams, "TeamId", "TeamName");
 
             if (!ModelState.IsValid) return View(model);
 

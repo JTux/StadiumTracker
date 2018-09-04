@@ -28,9 +28,6 @@
                         <p>
                             <span class="content-item">League:</span>
                             @Html.DisplayFor(modelItem => item.League.LeagueName)<br />
-                            <span class="content-item">Home:</span>
-                            @Html.DisplayFor(modelItem => item.Park.CityName)'s<br />
-                            @Html.DisplayFor(modelItem => item.Park.ParkName)<br />
                             <span class="item-image">
                                 @Html.ActionLink("Logo", "Details", new { id = item.TeamId })
                             </span>

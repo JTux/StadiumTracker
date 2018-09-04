@@ -285,7 +285,6 @@
     <Content Include="Views\Park\Edit.cshtml" />
     <Content Include="Views\Park\Delete.cshtml" />
     <Content Include="Views\Visit\Index.cshtml" />
-    <Content Include="Views\Visit\Create.cshtml" />
     <Content Include="Views\Visit\Details.cshtml" />
     <Content Include="Views\Visit\Edit.cshtml" />
     <Content Include="Views\Visit\Delete.cshtml" />
@@ -303,6 +302,7 @@
     <Content Include="Views\Shared\_CreateView.cshtml" />
     <Content Include="Views\Shared\_EditView.cshtml" />
     <Content Include="Views\Shared\_LeaguePartial.cshtml" />
+    <Content Include="Views\Visit\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,11 +12,9 @@ namespace StadiumTracker.Models.ParkModels
         public int ParkId { get; set; }
         public string ParkName { get; set; }
         public string CityName { get; set; }
+        public int VisitCount { get; set; }
         public bool IsVisited { get; set; }
         public bool HasPin { get; set; }
         public bool HasPhoto { get; set; }
-        public string TeamName { get; set; }
-        public int VisitCount { get; set; }
-        public int? LeagueId { get; set; }
     }
 }

@@ -17,12 +17,16 @@ namespace StadiumTracker.Services
             var entity = new Visit()
             {
                 VisitDate = model.VisitDate,
+                ParkId = model.ParkId,
                 Park = model.Park,
+                HomeTeamId = model.HomeTeamId,
+                HomeTeam = model.HomeTeam,
+                AwayTeamId = model.AwayTeamId,
+                AwayTeam = model.AwayTeam,
+                VisitorId = model.VisitorId,
                 Visitor = model.Visitor,
                 GotPin = model.GotPin,
                 GotPhoto = model.GotPhoto,
-                ParkId = model.ParkId,
-                VisitorId = model.VisitorId
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -59,6 +63,10 @@ namespace StadiumTracker.Services
                                     Park = e.Park,
                                     VisitorId = e.VisitorId,
                                     Visitor = e.Visitor,
+                                    HomeTeamId = e.HomeTeamId,
+                                    HomeTeam = e.HomeTeam,
+                                    AwayTeamId = e.AwayTeamId,
+                                    AwayTeam = e.AwayTeam,
                                     GotPhoto = e.GotPhoto,
                                     GotPin = e.GotPin,
                                     VisitDate = e.VisitDate
@@ -83,6 +91,8 @@ namespace StadiumTracker.Services
                         VisitId = entity.VisitId,
                         Park = entity.Park,
                         Visitor = entity.Visitor,
+                        HomeTeam = entity.HomeTeam,
+                        AwayTeam = entity.AwayTeam,
                         VisitDate = entity.VisitDate,
                         GotPin = entity.GotPin,
                         GotPhoto = entity.GotPhoto
@@ -99,6 +109,8 @@ namespace StadiumTracker.Services
                 var parkBoolCheck = ctx.Parks.Single(e => e.ParkId == entity.Park.ParkId);
 
                 entity.Visitor = model.Visitor;
+                entity.HomeTeam = model.HomeTeam;
+                entity.AwayTeam = model.AwayTeam;
 
                 if (model.GotPin != parkBoolCheck.HasPin)
                 {

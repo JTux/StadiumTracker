@@ -25,7 +25,6 @@ namespace StadiumTracker.Services
             var entity =
                 new Visitor()
                 {
-                    OwnerId = _userId,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     FullName = $"{model.FirstName} {model.LastName}"
@@ -44,7 +43,6 @@ namespace StadiumTracker.Services
                 var query =
                     ctx
                         .Visitors
-                        .Where(e => e.OwnerId == _userId)
                         .Select(
                             e =>
                                 new VisitorListItem
@@ -68,7 +66,7 @@ namespace StadiumTracker.Services
                 var entity =
                     ctx
                         .Visitors
-                        .Single(e => e.VisitorId == visitorId && e.OwnerId == _userId);
+                        .Single(e => e.VisitorId == visitorId);
                 return
                     new VisitorDetail
                     {
@@ -89,7 +87,7 @@ namespace StadiumTracker.Services
                 var entity =
                     ctx
                         .Visitors
-                        .Single(e => e.VisitorId == model.VisitorId && e.OwnerId == _userId);
+                        .Single(e => e.VisitorId == model.VisitorId);
 
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
@@ -106,7 +104,7 @@ namespace StadiumTracker.Services
                 var entity =
                     ctx
                         .Visitors
-                        .Single(e => e.VisitorId == visitorId && e.OwnerId == _userId);
+                        .Single(e => e.VisitorId == visitorId);
 
                 ctx.Visitors.Remove(entity);
 
@@ -121,10 +119,13 @@ namespace StadiumTracker.Services
 
             foreach (Visit visit in visitList)
             {
-                foreach (Team team in (db.Teams.Where(e => e.ParkId == visit.ParkId)))
+                if (visit.VisitorId == id)
                 {
-                    if (team.League.LeagueName == "National") nLeague++;
-                    else aLeague++;
+                    foreach (Team team in (db.Teams.Where(e => e.TeamId == visit.HomeTeamId)))
+                    {
+                        if (team.LeagueId == 1) nLeague++;
+                        else aLeague++;
+                    }
                 }
             }
 
