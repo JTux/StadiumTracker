@@ -64,9 +64,9 @@ namespace StadiumTracker.Services
                                     VisitorId = e.VisitorId,
                                     Visitor = e.Visitor,
                                     HomeTeamId = e.HomeTeamId,
-                                    HomeTeam = e.HomeTeam,
                                     AwayTeamId = e.AwayTeamId,
-                                    AwayTeam = e.AwayTeam,
+                                    HomeTeam = ctx.Teams.FirstOrDefault(t => t.TeamId == e.HomeTeamId),
+                                    AwayTeam = ctx.Teams.FirstOrDefault(t => t.TeamId == e.AwayTeamId),
                                     GotPhoto = e.GotPhoto,
                                     GotPin = e.GotPin,
                                     VisitDate = e.VisitDate
@@ -91,8 +91,8 @@ namespace StadiumTracker.Services
                         VisitId = entity.VisitId,
                         Park = entity.Park,
                         Visitor = entity.Visitor,
-                        HomeTeam = entity.HomeTeam,
-                        AwayTeam = entity.AwayTeam,
+                        HomeTeam = ctx.Teams.Single(e=>e.TeamId == entity.HomeTeamId),
+                        AwayTeam = ctx.Teams.Single(e => e.TeamId == entity.AwayTeamId),
                         VisitDate = entity.VisitDate,
                         GotPin = entity.GotPin,
                         GotPhoto = entity.GotPhoto

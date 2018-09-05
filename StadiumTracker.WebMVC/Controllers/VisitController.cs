@@ -65,6 +65,20 @@ namespace StadiumTracker.WebMVC.Controllers
 
         public ActionResult Edit (int id)
         {
+            var unsortedVisitorList = new SelectList(db.Visitors, "VisitorId", "FullName");
+            var visitorList = unsortedVisitorList.OrderBy(o => o.Text);
+
+            var unsortedParkList = new SelectList(db.Parks, "ParkId", "ParkName");
+            var parkList = unsortedParkList.OrderBy(o => o.Text);
+
+            var unsortedTeamList = new SelectList(db.Teams, "TeamId", "TeamName");
+            var teamList = unsortedTeamList.OrderBy(o => o.Text);
+
+            ViewBag.VisitorId = visitorList;
+            ViewBag.ParkId = parkList;
+            ViewBag.HomeTeamId = teamList;
+            ViewBag.AwayTeamId = teamList;
+
             var service = new VisitService();
             var detail = service.GetVisitById(id);
             var model =

@@ -12,6 +12,12 @@
             Date of Visit
         </th>
         <th>
+            Home Team
+        </th>
+        <th>
+            Away Team
+        </th>
+        <th>
             Stadium Name
         </th>
         <th>
@@ -30,6 +36,12 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.VisitDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HomeTeam.TeamName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AwayTeam.TeamName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Park.ParkName)

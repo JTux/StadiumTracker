@@ -10,7 +10,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            Stadium Name
+            Stadium
         </dt>
 
         <dd>
@@ -18,7 +18,23 @@
         </dd>
 
         <dt>
-            Visitor Name
+            Home Team
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeTeam.TeamName)
+        </dd>
+
+        <dt>
+            Away Team
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AwayTeam.TeamName)
+        </dd>
+
+        <dt>
+            Visitor
         </dt>
 
         <dd>
