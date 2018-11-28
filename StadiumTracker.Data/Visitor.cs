@@ -13,6 +13,9 @@ namespace StadiumTracker.Data
         public int VisitorId { get; set; }
 
         [Required]
+        public Guid OwnerId { get; set; }
+
+        [Required]
         public string FirstName { get; set; }
 
         [Required]

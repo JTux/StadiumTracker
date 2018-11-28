@@ -1,4 +1,5 @@
-﻿using StadiumTracker.Data;
+﻿using Microsoft.AspNet.Identity;
+using StadiumTracker.Data;
 using StadiumTracker.Models.TeamModels;
 using StadiumTracker.Services;
 using System;
@@ -13,7 +14,7 @@ namespace StadiumTracker.WebMVC.Controllers
     {
         public ActionResult Index()
         {
-            var service = new TeamService();
+            var service = CreateTeamService();
             return View(service.GetTeams());
         }
 
@@ -38,7 +39,7 @@ namespace StadiumTracker.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var service = new TeamService();
+            var service = CreateTeamService();
 
             if (service.CreateTeam(model))
             {
@@ -52,13 +53,13 @@ namespace StadiumTracker.WebMVC.Controllers
 
         public ActionResult Details(int id)
         {
-            var service = new TeamService();
+            var service = CreateTeamService();
             return View(service.GetTeamById(id));
         }
 
         public ActionResult Edit(int id)
         {
-            var service = new TeamService();
+            var service = CreateTeamService();
             var detail = service.GetTeamById(id);
             var model =
                 new TeamEdit
@@ -95,7 +96,7 @@ namespace StadiumTracker.WebMVC.Controllers
                 return View(model);
             }
 
-            var service = new TeamService();
+            var service = CreateTeamService();
 
             if (service.UpdateTeam(model))
             {
@@ -110,7 +111,7 @@ namespace StadiumTracker.WebMVC.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var service = new TeamService();
+            var service = CreateTeamService();
             return View(service.GetTeamById(id));
         }
 
@@ -119,10 +120,16 @@ namespace StadiumTracker.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
-            var service = new TeamService();
+            var service = CreateTeamService();
             service.DeleteTeam(id);
             TempData["SaveResult"] = "Team was deleted.";
             return RedirectToAction("Index");
+        }
+
+        private TeamService CreateTeamService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            return new TeamService(userId);
         }
     }
 }

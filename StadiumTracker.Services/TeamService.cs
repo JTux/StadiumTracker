@@ -10,10 +10,18 @@ namespace StadiumTracker.Services
 {
     public class TeamService
     {
+        private readonly Guid _ownerId;
+
+        public TeamService(Guid ownerId)
+        {
+            _ownerId = ownerId;
+        }
+
         public bool CreateTeam(TeamCreate model)
         {
             var entity = new Team()
             {
+                OwnerId = _ownerId,
                 TeamName = model.TeamName,
                 LeagueId = model.LeagueId,
             };
@@ -56,6 +64,7 @@ namespace StadiumTracker.Services
                 return
                     new TeamDetail
                     {
+                        OwnerId = entity.OwnerId,
                         TeamId = entity.TeamId,
                         TeamName = entity.TeamName,
                         League = entity.League
@@ -67,7 +76,7 @@ namespace StadiumTracker.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Teams.Single(e => e.TeamId == model.TeamId);
+                var entity = ctx.Teams.Single(e => e.TeamId == model.TeamId && e.OwnerId == _ownerId);
 
                 entity.TeamName = model.TeamName;
                 entity.League = ctx.Leagues.Single(e => e.LeagueId == model.LeagueId);
@@ -80,7 +89,7 @@ namespace StadiumTracker.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Teams.Single(e => e.TeamId == teamId);
+                var entity = ctx.Teams.Single(e => e.TeamId == teamId && e.OwnerId == _ownerId);
 
                 ctx.Teams.Remove(entity);
 

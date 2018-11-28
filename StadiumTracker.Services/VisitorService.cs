@@ -14,7 +14,6 @@ namespace StadiumTracker.Services
         private ApplicationDbContext db = new ApplicationDbContext();
 
         private readonly Guid _userId;
-        public VisitorService() { }
         public VisitorService(Guid userId)
         {
             _userId = userId;

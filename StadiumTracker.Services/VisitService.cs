@@ -10,12 +10,18 @@ namespace StadiumTracker.Services
 {
     public class VisitService
     {
-        public VisitService() { }
+        private readonly Guid _ownerId;
+
+        public VisitService(Guid ownerId)
+        {
+            _ownerId = ownerId;
+        }
 
         public bool CreateVisit(VisitCreate model)
         {
             var entity = new Visit()
             {
+                OwnerId = _ownerId,
                 VisitDate = model.VisitDate,
                 ParkId = model.ParkId,
                 Park = model.Park,
@@ -54,6 +60,7 @@ namespace StadiumTracker.Services
                 var query =
                     ctx
                         .Visits
+                        .Where(e => e.OwnerId == _ownerId)
                         .Select(
                             e =>
                                 new VisitListItem
@@ -91,7 +98,7 @@ namespace StadiumTracker.Services
                         VisitId = entity.VisitId,
                         Park = entity.Park,
                         Visitor = entity.Visitor,
-                        HomeTeam = ctx.Teams.Single(e=>e.TeamId == entity.HomeTeamId),
+                        HomeTeam = ctx.Teams.Single(e => e.TeamId == entity.HomeTeamId),
                         AwayTeam = ctx.Teams.Single(e => e.TeamId == entity.AwayTeamId),
                         VisitDate = entity.VisitDate,
                         GotPin = entity.GotPin,
@@ -104,7 +111,7 @@ namespace StadiumTracker.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Visits.Single(e => e.VisitId == model.VisitId);
+                var entity = ctx.Visits.Single(e => e.VisitId == model.VisitId && e.OwnerId == _ownerId);
 
                 var parkBoolCheck = ctx.Parks.Single(e => e.ParkId == entity.Park.ParkId);
 
@@ -144,7 +151,7 @@ namespace StadiumTracker.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Visits.Single(e => e.VisitId == visitId);
+                var entity = ctx.Visits.Single(e => e.VisitId == visitId && e.OwnerId == _ownerId);
 
                 var visitCountCheck = ctx.Visitors.Single(e => e.VisitorId == entity.VisitorId);
                 if (visitCountCheck.TotalVisits > 0)

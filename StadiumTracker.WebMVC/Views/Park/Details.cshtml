@@ -41,10 +41,13 @@
         <dd>
             @Html.DisplayFor(model => model.HasPhoto)
         </dd>
-
     </dl>
     <p class="detail-buttons">
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ParkId }) |
+        @if (Model.OwnerId == Model.CurrentUser)
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ParkId })
+        }
+
         @Html.ActionLink("Back to List", "Index")
     </p>
 </div>

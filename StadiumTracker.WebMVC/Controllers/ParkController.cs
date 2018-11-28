@@ -15,7 +15,7 @@ namespace StadiumTracker.WebMVC.Controllers
         // GET: Park
         public ActionResult Index()
         {
-            var service = new ParkService();
+            var service = CreateParkService();
             return View(service.GetParks());
         }
 
@@ -35,7 +35,7 @@ namespace StadiumTracker.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var service = new ParkService();
+            var service = CreateParkService();
 
             if (service.CreatePark(model))
             {
@@ -50,14 +50,14 @@ namespace StadiumTracker.WebMVC.Controllers
         //Details
         public ActionResult Details(int id)
         {
-            var service = new ParkService();
+            var service = CreateParkService();
             return View(service.GetParkById(id));
         }
 
         //Edit
         public ActionResult Edit(int id)
         {
-            var service = new ParkService();
+            var service = CreateParkService();
             var detail = service.GetParkById(id);
             var model =
                 new ParkEdit
@@ -81,7 +81,7 @@ namespace StadiumTracker.WebMVC.Controllers
                 return View(model);
             }
 
-            var service = new ParkService();
+            var service = CreateParkService();
 
             if (service.UpdatePark(model))
             {
@@ -97,7 +97,7 @@ namespace StadiumTracker.WebMVC.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var service = new ParkService();
+            var service = CreateParkService();
             return View(service.GetParkById(id));
         }
 
@@ -106,10 +106,16 @@ namespace StadiumTracker.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
-            var service = new ParkService();
+            var service = CreateParkService();
             service.DeletePark(id);
             TempData["SaveResult"] = "Park has been deleted.";
             return RedirectToAction("Index");
+        }
+
+        private ParkService CreateParkService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            return new ParkService(userId);
         }
     }
 }

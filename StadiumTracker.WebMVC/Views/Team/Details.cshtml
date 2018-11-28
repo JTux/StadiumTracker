@@ -1,4 +1,5 @@
-﻿@model StadiumTracker.Models.TeamModels.TeamDetail
+﻿@using Microsoft.AspNet.Identity;
+@model StadiumTracker.Models.TeamModels.TeamDetail
 
 @{
     ViewBag.Title = "Details";
@@ -22,6 +23,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TeamId }) |
+    @if (Guid.Parse(User.Identity.GetUserId()) == Model.OwnerId)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.TeamId })
+    }
+
     @Html.ActionLink("Back to List", "Index")
 </p>

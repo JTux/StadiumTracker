@@ -54,6 +54,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="League.cs" />
+    <Compile Include="Migrations\201809051901595_InitialCreate.cs" />
+    <Compile Include="Migrations\201809051901595_InitialCreate.Designer.cs">
+      <DependentUpon>201809051901595_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810191436452_addedownerids.cs" />
+    <Compile Include="Migrations\201810191436452_addedownerids.Designer.cs">
+      <DependentUpon>201810191436452_addedownerids.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Park.cs" />
     <Compile Include="Team.cs" />
     <Compile Include="Visit.cs" />
@@ -64,6 +73,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809051901595_InitialCreate.resx">
+      <DependentUpon>201809051901595_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810191436452_addedownerids.resx">
+      <DependentUpon>201810191436452_addedownerids.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

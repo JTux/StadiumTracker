@@ -26,6 +26,9 @@ namespace StadiumTracker.Data
         public int VisitorId { get; set; }
 
         [Required]
+        public Guid OwnerId { get; set; }
+
+        [Required]
         public DateTime VisitDate { get; set; }
 
         public virtual Park Park { get; set; }

@@ -11,6 +11,7 @@ namespace StadiumTracker.Models.TeamModels
     {
         public int TeamId { get; set; }
         public string TeamName { get; set; }
+        public Guid OwnerId { get; set; }
         public League League { get; set; }
     }
 }

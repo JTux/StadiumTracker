@@ -5,15 +5,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Security;
 
 namespace StadiumTracker.Services
 {
     public class ParkService
     {
+        private readonly Guid _ownerId;
+
+        public ParkService(Guid ownerId)
+        {
+            _ownerId = ownerId;
+        }
+
         public bool CreatePark(ParkCreate model)
         {
             var entity = new Park()
             {
+                OwnerId = _ownerId,
                 ParkName = model.ParkName,
                 CityName = model.CityName
             };
@@ -61,9 +70,11 @@ namespace StadiumTracker.Services
                     new ParkDetail
                     {
                         ParkId = entity.ParkId,
+                        OwnerId = entity.OwnerId,
                         ParkName = entity.ParkName,
                         CityName = entity.CityName,
                         IsVisited = entity.IsVisited,
+                        CurrentUser = _ownerId
                     };
             }
         }
@@ -72,7 +83,7 @@ namespace StadiumTracker.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Parks.Single(e => e.ParkId == model.ParkId);
+                var entity = ctx.Parks.Single(e => e.ParkId == model.ParkId && e.OwnerId == _ownerId);
 
                 entity.ParkName = model.ParkName;
                 entity.CityName = model.CityName;
@@ -85,7 +96,7 @@ namespace StadiumTracker.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Parks.Single(e => e.ParkId == parkId);
+                var entity = ctx.Parks.Single(e => e.ParkId == parkId && e.OwnerId == _ownerId);
 
                 ctx.Parks.Remove(entity);
 

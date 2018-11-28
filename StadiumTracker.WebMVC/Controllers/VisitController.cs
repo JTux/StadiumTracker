@@ -15,7 +15,7 @@ namespace StadiumTracker.WebMVC.Controllers
     {
         public ActionResult Index()
         {
-            var service = new VisitService();
+            var service = CreateVisitService();
             return View(service.GetVisits());
         }
 
@@ -45,7 +45,7 @@ namespace StadiumTracker.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var service = new VisitService();
+            var service = CreateVisitService();
 
             if (service.CreateVisit(model))
             {
@@ -59,7 +59,7 @@ namespace StadiumTracker.WebMVC.Controllers
 
         public ActionResult Details(int id)
         {
-            var service = new VisitService();
+            var service = CreateVisitService();
             return View(service.GetVisitById(id));
         }
 
@@ -79,7 +79,7 @@ namespace StadiumTracker.WebMVC.Controllers
             ViewBag.HomeTeamId = teamList;
             ViewBag.AwayTeamId = teamList;
 
-            var service = new VisitService();
+            var service = CreateVisitService();
             var detail = service.GetVisitById(id);
             var model =
                 new VisitEdit
@@ -108,7 +108,7 @@ namespace StadiumTracker.WebMVC.Controllers
                 return View(model);
             }
 
-            var service = new VisitService();
+            var service = CreateVisitService();
 
             if (service.UpdateVisit(model))
             {
@@ -123,7 +123,7 @@ namespace StadiumTracker.WebMVC.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var service = new VisitService();
+            var service = CreateVisitService();
             return View(service.GetVisitById(id));
         }
 
@@ -132,10 +132,16 @@ namespace StadiumTracker.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
-            var service = new VisitService();
+            var service = CreateVisitService();
             service.DeleteVisit(id);
             TempData["SaveResult"] = "Visit has been deleted.";
             return RedirectToAction("Index");
+        }
+
+        private VisitService CreateVisitService()
+        {
+            var ownerId = Guid.Parse(User.Identity.GetUserId());
+            return new VisitService(ownerId);
         }
     }
 }
