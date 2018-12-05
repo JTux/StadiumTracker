@@ -1,4 +1,5 @@
-﻿using StadiumTracker.Data;
+﻿using StadiumTracker.Contracts;
+using StadiumTracker.Data;
 using StadiumTracker.Models.LeagueModels;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StadiumTracker.Services
 {
-    public class LeagueService
+    public class LeagueService : ILeagueService
     {
         public bool CreateLeague(LeagueCreate model)
         {

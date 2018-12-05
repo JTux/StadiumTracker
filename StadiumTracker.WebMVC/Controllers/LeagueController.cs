@@ -13,7 +13,7 @@ namespace StadiumTracker.WebMVC.Controllers
     {
         public ActionResult Index()
         {
-            var service = new LeagueService();
+            var service = CreateLeagueService();
             return View(service.GetLeagues());
         }
 
@@ -28,7 +28,7 @@ namespace StadiumTracker.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var service = new LeagueService();
+            var service = CreateLeagueService();
 
             if (service.CreateLeague(model))
             {
@@ -42,13 +42,13 @@ namespace StadiumTracker.WebMVC.Controllers
 
         public ActionResult Details(int id)
         {
-            var service = new LeagueService();
+            var service = CreateLeagueService();
             return View(service.GetLeagueById(id));
         }
 
         public ActionResult Edit(int id)
         {
-            var service = new LeagueService();
+            var service = CreateLeagueService();
             var detail = service.GetLeagueById(id);
             var model =
                 new LeagueEdit
@@ -71,7 +71,7 @@ namespace StadiumTracker.WebMVC.Controllers
                 return View(model);
             }
 
-            var service = new LeagueService();
+            var service = CreateLeagueService();
 
             if (service.UpdateLeague(model))
             {
@@ -86,7 +86,7 @@ namespace StadiumTracker.WebMVC.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var service = new LeagueService();
+            var service = CreateLeagueService();
             return View(service.GetLeagueById(id));
         }
 
@@ -95,10 +95,15 @@ namespace StadiumTracker.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
-            var service = new LeagueService();
+            var service = CreateLeagueService();
             service.DeleteLeague(id);
             TempData["SaveResult"] = "League was deleted.";
             return RedirectToAction("Index");
+        }
+
+        private LeagueService CreateLeagueService()
+        {
+            return new LeagueService();
         }
     }
 }

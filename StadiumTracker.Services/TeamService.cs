@@ -1,4 +1,5 @@
-﻿using StadiumTracker.Data;
+﻿using StadiumTracker.Contracts;
+using StadiumTracker.Data;
 using StadiumTracker.Models.TeamModels;
 using System;
 using System.Collections;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace StadiumTracker.Services
 {
-    public class TeamService
+    public class TeamService : ITeamService
     {
         private readonly Guid _ownerId;
 

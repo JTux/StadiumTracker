@@ -1,4 +1,5 @@
-﻿using StadiumTracker.Data;
+﻿using StadiumTracker.Contracts;
+using StadiumTracker.Data;
 using StadiumTracker.Models.ParkModels;
 using System;
 using System.Collections;
@@ -10,7 +11,7 @@ using System.Web.Security;
 
 namespace StadiumTracker.Services
 {
-    public class ParkService
+    public class ParkService : IParkService
     {
         private readonly Guid _ownerId;
 
