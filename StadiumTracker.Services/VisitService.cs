@@ -1,6 +1,7 @@
 ﻿using StadiumTracker.Data;
 using StadiumTracker.Models.VisitModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,9 +27,7 @@ namespace StadiumTracker.Services
                 ParkId = model.ParkId,
                 Park = model.Park,
                 HomeTeamId = model.HomeTeamId,
-                HomeTeam = model.HomeTeam,
                 AwayTeamId = model.AwayTeamId,
-                AwayTeam = model.AwayTeam,
                 VisitorId = model.VisitorId,
                 Visitor = model.Visitor,
                 GotPin = model.GotPin,
@@ -53,6 +52,20 @@ namespace StadiumTracker.Services
             }
         }
 
+        private ApplicationDbContext db = new ApplicationDbContext();
+        public IEnumerable GetOwnedList(string choice)
+        {
+            var blankGuid = Guid.Parse("00000000-0000-0000-0000-000000000000");
+
+            if (choice == "Visitor")
+                return db.Visitors.Where(v => v.OwnerId == _ownerId);
+            else if (choice == "Park")
+                return db.Parks.Where(p => p.OwnerId == _ownerId || p.OwnerId == blankGuid);
+            else if (choice == "Team")
+                return db.Teams.Where(t => t.OwnerId == _ownerId || t.OwnerId == blankGuid);
+            else throw new Exception();
+        }
+
         public IEnumerable<VisitListItem> GetVisits()
         {
             using (var ctx = new ApplicationDbContext())
@@ -60,23 +73,23 @@ namespace StadiumTracker.Services
                 var query =
                     ctx
                         .Visits
-                        .Where(e => e.OwnerId == _ownerId)
+                        .Where(visit => visit.OwnerId == _ownerId)
                         .Select(
-                            e =>
+                            visit =>
                                 new VisitListItem
                                 {
-                                    VisitId = e.VisitId,
-                                    ParkId = e.ParkId,
-                                    Park = e.Park,
-                                    VisitorId = e.VisitorId,
-                                    Visitor = e.Visitor,
-                                    HomeTeamId = e.HomeTeamId,
-                                    AwayTeamId = e.AwayTeamId,
-                                    HomeTeam = ctx.Teams.FirstOrDefault(t => t.TeamId == e.HomeTeamId),
-                                    AwayTeam = ctx.Teams.FirstOrDefault(t => t.TeamId == e.AwayTeamId),
-                                    GotPhoto = e.GotPhoto,
-                                    GotPin = e.GotPin,
-                                    VisitDate = e.VisitDate
+                                    VisitId = visit.VisitId,
+                                    ParkId = visit.ParkId,
+                                    Park = visit.Park,
+                                    VisitorId = visit.VisitorId,
+                                    Visitor = visit.Visitor,
+                                    HomeTeamId = visit.HomeTeamId,
+                                    AwayTeamId = visit.AwayTeamId,
+                                    HomeTeam = ctx.Teams.FirstOrDefault(t => t.TeamId == visit.HomeTeamId),
+                                    AwayTeam = ctx.Teams.FirstOrDefault(t => t.TeamId == visit.AwayTeamId),
+                                    GotPhoto = visit.GotPhoto,
+                                    GotPin = visit.GotPin,
+                                    VisitDate = visit.VisitDate
                                 }
                         );
                 var newList = query.ToList();
@@ -116,8 +129,6 @@ namespace StadiumTracker.Services
                 var parkBoolCheck = ctx.Parks.Single(e => e.ParkId == entity.Park.ParkId);
 
                 entity.Visitor = model.Visitor;
-                entity.HomeTeam = model.HomeTeam;
-                entity.AwayTeam = model.AwayTeam;
 
                 if (model.GotPin != parkBoolCheck.HasPin)
                 {

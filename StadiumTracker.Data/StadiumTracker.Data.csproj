@@ -62,6 +62,10 @@
     <Compile Include="Migrations\201810191436452_addedownerids.Designer.cs">
       <DependentUpon>201810191436452_addedownerids.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811282011267_begoneteams.cs" />
+    <Compile Include="Migrations\201811282011267_begoneteams.Designer.cs">
+      <DependentUpon>201811282011267_begoneteams.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Park.cs" />
     <Compile Include="Team.cs" />
@@ -80,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810191436452_addedownerids.resx">
       <DependentUpon>201810191436452_addedownerids.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811282011267_begoneteams.resx">
+      <DependentUpon>201811282011267_begoneteams.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -79,6 +79,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="TeamModels\packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StadiumTracker.Data\StadiumTracker.Data.csproj">

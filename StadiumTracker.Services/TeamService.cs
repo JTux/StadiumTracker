@@ -1,6 +1,7 @@
 ﻿using StadiumTracker.Data;
 using StadiumTracker.Models.TeamModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,7 +36,7 @@ namespace StadiumTracker.Services
 
         public IEnumerable<TeamListItem> GetTeams()
         {
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
@@ -58,7 +59,7 @@ namespace StadiumTracker.Services
 
         public TeamDetail GetTeamById(int teamId)
         {
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Teams.Single(e => e.TeamId == teamId);
                 return
@@ -94,6 +95,20 @@ namespace StadiumTracker.Services
                 ctx.Teams.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable GetOwnedList(string choice)
+        {
+            var blankGuid = Guid.Parse("00000000-0000-0000-0000-000000000000");
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                if (choice == "Team")
+                    return ctx.Teams.Where(t => t.OwnerId == _ownerId || t.OwnerId == blankGuid);
+                else if (choice == "League")
+                    return ctx.Leagues;
+                else throw new Exception();
             }
         }
     }

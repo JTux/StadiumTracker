@@ -18,13 +18,14 @@ namespace StadiumTracker.WebMVC.Controllers
             return View(service.GetTeams());
         }
 
-        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Create()
         {
-            var newLeagueList = new SelectList(db.Leagues, "LeagueId", "LeagueName").ToList();
+            var service = CreateTeamService();
+
+            var newLeagueList = new SelectList(service.GetOwnedList("League"), "LeagueId", "LeagueName").ToList();
             var sortedLeagueList = newLeagueList.OrderBy(o => o.Text);
 
-            var newTeamList = new SelectList(db.Teams, "TeamId", "TeamName").ToList();
+            var newTeamList = new SelectList(service.GetOwnedList("Team"), "TeamId", "TeamName").ToList();
             var sortedTeamList = newTeamList.OrderBy(o => o.Text);
 
             ViewBag.TeamId = sortedTeamList;
@@ -68,10 +69,10 @@ namespace StadiumTracker.WebMVC.Controllers
                     TeamName = detail.TeamName,
                 };
 
-            var newLeagueList = new SelectList(db.Leagues, "LeagueId", "LeagueName").ToList();
+            var newLeagueList = new SelectList(service.GetOwnedList("League"), "LeagueId", "LeagueName").ToList();
             var sortedLeagueList = newLeagueList.OrderBy(o => o.Text);
 
-            var newTeamList = new SelectList(db.Teams, "TeamId", "TeamName").ToList();
+            var newTeamList = new SelectList(service.GetOwnedList("Team"), "TeamId", "TeamName").ToList();
             var sortedTeamList = newTeamList.OrderBy(o => o.Text);
 
             ViewBag.LeagueId = sortedLeagueList;
@@ -85,8 +86,10 @@ namespace StadiumTracker.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, TeamEdit model)
         {
-            ViewBag.LeagueId = new SelectList(db.Leagues, "LeagueId", "LeagueName");
-            ViewBag.TeamId = new SelectList(db.Teams, "TeamId", "TeamName");
+            var service = CreateTeamService();
+
+            ViewBag.LeagueId = new SelectList(service.GetOwnedList("League"), "LeagueId", "LeagueName");
+            ViewBag.TeamId = new SelectList(service.GetOwnedList("Team"), "TeamId", "TeamName");
 
             if (!ModelState.IsValid) return View(model);
 
@@ -95,8 +98,6 @@ namespace StadiumTracker.WebMVC.Controllers
                 ModelState.AddModelError("", "Ids are mismatched.");
                 return View(model);
             }
-
-            var service = CreateTeamService();
 
             if (service.UpdateTeam(model))
             {

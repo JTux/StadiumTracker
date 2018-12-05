@@ -19,13 +19,9 @@ namespace StadiumTracker.WebMVC.Controllers
             return View(service.GetParks());
         }
 
-        private Data.ApplicationDbContext db = new Data.ApplicationDbContext();
-
         //Create
         public ActionResult Create()
         {
-            ViewBag.TeamId = new SelectList(db.Teams, "TeamId", "TeamName");
-
             return View();
         }
 

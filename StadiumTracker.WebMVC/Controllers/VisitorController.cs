@@ -1,12 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
-using StadiumTracker.Data;
-using StadiumTracker.Models;
 using StadiumTracker.Models.VisitorModels;
 using StadiumTracker.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace StadiumTracker.WebMVC.Controllers
@@ -14,8 +9,6 @@ namespace StadiumTracker.WebMVC.Controllers
     [Authorize]
     public class VisitorController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         public ActionResult Index()
         {
             var service = CreateVisitorService();

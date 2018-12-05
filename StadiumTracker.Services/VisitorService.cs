@@ -26,7 +26,8 @@ namespace StadiumTracker.Services
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    FullName = $"{model.FirstName} {model.LastName}"
+                    FullName = $"{model.FirstName} {model.LastName}",
+                    OwnerId = _userId
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -42,6 +43,7 @@ namespace StadiumTracker.Services
                 var query =
                     ctx
                         .Visitors
+                        .Where(v => v.OwnerId == _userId)
                         .Select(
                             e =>
                                 new VisitorListItem
@@ -51,7 +53,7 @@ namespace StadiumTracker.Services
                                     LastName = e.LastName,
                                     FullName = e.FullName,
                                     TotalVisits = e.TotalVisits,
-                                    TotalPins = e.TotalPins
+                                    TotalPins = e.TotalPins,
                                 }
                         );
                 return query.ToArray();

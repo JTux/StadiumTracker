@@ -32,8 +32,6 @@ namespace StadiumTracker.Data
         public DateTime VisitDate { get; set; }
 
         public virtual Park Park { get; set; }
-        public virtual Team HomeTeam { get; set; }
-        public virtual Team AwayTeam { get; set; }
         public virtual Visitor Visitor { get; set; }
 
         [Required]

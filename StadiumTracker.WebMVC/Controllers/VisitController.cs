@@ -19,16 +19,17 @@ namespace StadiumTracker.WebMVC.Controllers
             return View(service.GetVisits());
         }
 
-        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Create()
         {
-            var unsortedVisitorList = new SelectList(db.Visitors, "VisitorId", "FullName");
+            var service = CreateVisitService();
+
+            var unsortedVisitorList = new SelectList(service.GetOwnedList("Visitor"), "VisitorId", "FullName");
             var visitorList = unsortedVisitorList.OrderBy(o => o.Text);
 
-            var unsortedParkList = new SelectList(db.Parks, "ParkId", "ParkName");
+            var unsortedParkList = new SelectList(service.GetOwnedList("Park"), "ParkId", "ParkName");
             var parkList = unsortedParkList.OrderBy(o => o.Text);
 
-            var unsortedTeamList = new SelectList(db.Teams, "TeamId", "TeamName");
+            var unsortedTeamList = new SelectList(service.GetOwnedList("Team"), "TeamId", "TeamName");
             var teamList = unsortedTeamList.OrderBy(o => o.Text);
 
             ViewBag.VisitorId = visitorList;
@@ -63,15 +64,17 @@ namespace StadiumTracker.WebMVC.Controllers
             return View(service.GetVisitById(id));
         }
 
-        public ActionResult Edit (int id)
+        public ActionResult Edit(int id)
         {
-            var unsortedVisitorList = new SelectList(db.Visitors, "VisitorId", "FullName");
+            var service = CreateVisitService();
+
+            var unsortedVisitorList = new SelectList(service.GetOwnedList("Visitor"), "VisitorId", "FullName");
             var visitorList = unsortedVisitorList.OrderBy(o => o.Text);
 
-            var unsortedParkList = new SelectList(db.Parks, "ParkId", "ParkName");
+            var unsortedParkList = new SelectList(service.GetOwnedList("Park"), "ParkId", "ParkName");
             var parkList = unsortedParkList.OrderBy(o => o.Text);
 
-            var unsortedTeamList = new SelectList(db.Teams, "TeamId", "TeamName");
+            var unsortedTeamList = new SelectList(service.GetOwnedList("Team"), "TeamId", "TeamName");
             var teamList = unsortedTeamList.OrderBy(o => o.Text);
 
             ViewBag.VisitorId = visitorList;
@@ -79,7 +82,6 @@ namespace StadiumTracker.WebMVC.Controllers
             ViewBag.HomeTeamId = teamList;
             ViewBag.AwayTeamId = teamList;
 
-            var service = CreateVisitService();
             var detail = service.GetVisitById(id);
             var model =
                 new VisitEdit
