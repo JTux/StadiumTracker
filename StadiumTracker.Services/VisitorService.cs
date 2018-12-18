@@ -45,15 +45,15 @@ namespace StadiumTracker.Services
                         .Visitors
                         .Where(v => v.OwnerId == _userId)
                         .Select(
-                            e =>
+                            v =>
                                 new VisitorListItem
                                 {
-                                    VisitorId = e.VisitorId,
-                                    FirstName = e.FirstName,
-                                    LastName = e.LastName,
-                                    FullName = e.FullName,
-                                    TotalVisits = e.TotalVisits,
-                                    TotalPins = e.TotalPins,
+                                    VisitorId = v.VisitorId,
+                                    FirstName = v.FirstName,
+                                    LastName = v.LastName,
+                                    FullName = v.FullName,
+                                    TotalVisits = v.TotalVisits,
+                                    TotalPins = v.TotalPins,
                                 }
                         );
                 return query.ToArray();

@@ -22,10 +22,10 @@ namespace StadiumTracker.WebMVC.Controllers
         {
             var service = CreateTeamService();
 
-            var newLeagueList = new SelectList(service.GetOwnedList("League"), "LeagueId", "LeagueName").ToList();
+            var newLeagueList = new SelectList(service.GetOwnedList("League"), "LeagueId", "LeagueName");
             var sortedLeagueList = newLeagueList.OrderBy(o => o.Text);
 
-            var newTeamList = new SelectList(service.GetOwnedList("Team"), "TeamId", "TeamName").ToList();
+            var newTeamList = new SelectList(service.GetOwnedList("Team"), "TeamId", "TeamName");
             var sortedTeamList = newTeamList.OrderBy(o => o.Text);
 
             ViewBag.TeamId = sortedTeamList;
@@ -77,7 +77,7 @@ namespace StadiumTracker.WebMVC.Controllers
 
             ViewBag.LeagueId = sortedLeagueList;
             ViewBag.TeamId = sortedTeamList;
-            ViewBag.LeagueInfo = detail.League.LeagueName;
+            ViewBag.LeagueInfo = detail.LeagueName;
 
             return View(model);
         }

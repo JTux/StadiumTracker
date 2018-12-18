@@ -49,7 +49,7 @@ namespace StadiumTracker.Services
                                     TeamId = e.TeamId,
                                     TeamName = e.TeamName,
                                     LeagueId = e.LeagueId,
-                                    League = e.League
+                                    LeagueName = e.League.LeagueName
                                 }
                         );
                 var queryArray = query.ToArray();
@@ -69,7 +69,7 @@ namespace StadiumTracker.Services
                         OwnerId = entity.OwnerId,
                         TeamId = entity.TeamId,
                         TeamName = entity.TeamName,
-                        League = entity.League
+                        LeagueName = entity.League.LeagueName
                     };
             }
         }
@@ -99,18 +99,16 @@ namespace StadiumTracker.Services
             }
         }
 
+        private ApplicationDbContext db = new ApplicationDbContext();
         public IEnumerable GetOwnedList(string choice)
         {
             var blankGuid = Guid.Parse("00000000-0000-0000-0000-000000000000");
 
-            using (var ctx = new ApplicationDbContext())
-            {
-                if (choice == "Team")
-                    return ctx.Teams.Where(t => t.OwnerId == _ownerId || t.OwnerId == blankGuid);
-                else if (choice == "League")
-                    return ctx.Leagues;
-                else throw new Exception();
-            }
+            if (choice == "Team")
+                return db.Teams.Where(t => t.OwnerId == _ownerId || t.OwnerId == blankGuid);
+            else if (choice == "League")
+                return db.Leagues;
+            else throw new Exception();
         }
     }
 }

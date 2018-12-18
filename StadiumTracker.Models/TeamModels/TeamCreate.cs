@@ -14,6 +14,6 @@ namespace StadiumTracker.Models.TeamModels
         public string TeamName { get; set; }
 
         public int LeagueId { get; set; }
-        public virtual League League { get; set; }
+        public string LeagueName { get; set; }
     }
 }

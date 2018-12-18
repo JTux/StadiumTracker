@@ -87,10 +87,11 @@ namespace StadiumTracker.WebMVC.Controllers
                 new VisitEdit
                 {
                     VisitId = detail.VisitId,
-                    Park = detail.Park,
-                    HomeTeam = detail.HomeTeam,
-                    AwayTeam = detail.AwayTeam,
-                    Visitor = detail.Visitor,
+                    ParkName = detail.ParkName,
+                    HomeTeamName = detail.HomeTeamName,
+                    AwayTeamName = detail.AwayTeamName,
+                    VisitorFirstName = detail.VisitorFirstName,
+                    VisitorLastName = detail.VisitorLastName,
                     VisitDate = detail.VisitDate,
                     GotPin = detail.GotPin,
                     GotPhoto = detail.GotPhoto

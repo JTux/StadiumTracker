@@ -16,12 +16,12 @@ namespace StadiumTracker.Models.VisitModels
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime VisitDate { get; set; }
 
-        public Team HomeTeam { get; set; }
-        public Team AwayTeam { get; set; }
-        public Park Park { get; set; }
-        public Visitor Visitor { get; set; }
-
         public bool GotPin { get; set; }
         public bool GotPhoto { get; set; }
+        public string ParkName { get; set; }
+        public string VisitorFirstName { get; set; }
+        public string VisitorLastName { get; set; }
+        public string HomeTeamName { get; set; }
+        public string AwayTeamName { get; set; }
     }
 }

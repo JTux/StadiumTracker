@@ -53,7 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chart.cs" />
     <Compile Include="LeagueModels\LeagueCreate.cs" />
     <Compile Include="LeagueModels\LeagueDetail.cs" />
     <Compile Include="LeagueModels\LeagueEdit.cs" />

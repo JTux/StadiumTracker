@@ -53,7 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ILeagueService.cs" />
     <Compile Include="IParkService.cs" />
+    <Compile Include="ITeamService.cs" />
     <Compile Include="IVisitorService.cs" />
     <Compile Include="IVisitService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

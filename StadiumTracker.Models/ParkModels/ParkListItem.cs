@@ -10,7 +10,6 @@ namespace StadiumTracker.Models.ParkModels
     public class ParkListItem
     {
         public int ParkId { get; set; }
-        public Guid OwnerId { get; set; }
         public string ParkName { get; set; }
         public string CityName { get; set; }
         public int VisitCount { get; set; }

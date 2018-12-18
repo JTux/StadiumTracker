@@ -6,7 +6,7 @@
 
 <h2 id="page-header">Teams</h2>
 
-@{ 
+@{
     ViewBag.Options = @Html.ActionLink("Create New", "Create");
 }
 
@@ -17,17 +17,27 @@
             <div class="col-lg-4 col-md-4 item-box">
                 <div class="item-container">
                     @if (item.LeagueId == 1)
-                    {<span class="content-name national-name">
+                    {
+                        <span class="content-name national-name">
                             @Html.DisplayFor(modelItem => item.TeamName)
-                        </span>}
-                    @if (item.LeagueId == 2)
-                    {<span class="content-name american-name">
+                        </span>
+                    }
+                    else if (item.LeagueId == 2)
+                    {
+                        <span class="content-name american-name">
                             @Html.DisplayFor(modelItem => item.TeamName)
-                        </span>}
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="content-name">
+                            @Html.DisplayFor(modelItem => item.TeamName)
+                        </span>
+                    }
                     <div class="item-grid">
                         <p>
                             <span class="content-item">League:</span>
-                            @Html.DisplayFor(modelItem => item.League.LeagueName)<br />
+                            @Html.DisplayFor(modelItem => item.LeagueName)<br />
                             <span class="item-image">
                                 @Html.ActionLink("Logo", "Details", new { id = item.TeamId })
                             </span>

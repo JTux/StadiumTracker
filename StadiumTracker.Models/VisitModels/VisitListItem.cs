@@ -19,14 +19,13 @@ namespace StadiumTracker.Models.VisitModels
         public int ParkId { get; set; }
         public int VisitorId { get; set; }
         public int HomeTeamId { get; set; }
+        public string HomeTeamName { get; set; }
         public int AwayTeamId { get; set; }
-
-        public virtual Team HomeTeam { get; set; }
-        public virtual Team AwayTeam { get; set; }
-        public virtual Park Park { get; set; }
-        public virtual Visitor Visitor { get; set; }
+        public string AwayTeamName { get; set; }
 
         public bool GotPin { get; set; }
         public bool GotPhoto { get; set; }
+        public string ParkName { get; set; }
+        public string VisitorName { get; set; }
     }
 }

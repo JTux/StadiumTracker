@@ -11,7 +11,6 @@ namespace StadiumTracker.Models.ParkModels
     {
         public int ParkId { get; set; }
         public Guid OwnerId { get; set; }
-        public Guid CurrentUser { get; set; }
         public string ParkName { get; set; }
         public string CityName { get; set; }
         public bool IsVisited { get; set; }

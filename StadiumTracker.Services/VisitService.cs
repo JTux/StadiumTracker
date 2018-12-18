@@ -26,11 +26,9 @@ namespace StadiumTracker.Services
                 OwnerId = _ownerId,
                 VisitDate = model.VisitDate,
                 ParkId = model.ParkId,
-                Park = model.Park,
                 HomeTeamId = model.HomeTeamId,
                 AwayTeamId = model.AwayTeamId,
                 VisitorId = model.VisitorId,
-                Visitor = model.Visitor,
                 GotPin = model.GotPin,
                 GotPhoto = model.GotPhoto,
             };
@@ -81,13 +79,13 @@ namespace StadiumTracker.Services
                                 {
                                     VisitId = visit.VisitId,
                                     ParkId = visit.ParkId,
-                                    Park = visit.Park,
+                                    ParkName = visit.Park.ParkName,
                                     VisitorId = visit.VisitorId,
-                                    Visitor = visit.Visitor,
+                                    VisitorName = visit.Visitor.FirstName,
                                     HomeTeamId = visit.HomeTeamId,
                                     AwayTeamId = visit.AwayTeamId,
-                                    HomeTeam = ctx.Teams.FirstOrDefault(t => t.TeamId == visit.HomeTeamId),
-                                    AwayTeam = ctx.Teams.FirstOrDefault(t => t.TeamId == visit.AwayTeamId),
+                                    HomeTeamName = ctx.Teams.FirstOrDefault(t => t.TeamId == visit.HomeTeamId).TeamName,
+                                    AwayTeamName = ctx.Teams.FirstOrDefault(t => t.TeamId == visit.AwayTeamId).TeamName,
                                     GotPhoto = visit.GotPhoto,
                                     GotPin = visit.GotPin,
                                     VisitDate = visit.VisitDate
@@ -95,7 +93,7 @@ namespace StadiumTracker.Services
                         );
                 var newList = query.ToList();
 
-                newList.OrderBy(x => x.Park.ParkName);
+                newList.OrderBy(x => x.ParkName);
 
                 return newList;
             }
@@ -110,10 +108,11 @@ namespace StadiumTracker.Services
                     new VisitDetail
                     {
                         VisitId = entity.VisitId,
-                        Park = entity.Park,
-                        Visitor = entity.Visitor,
-                        HomeTeam = ctx.Teams.Single(e => e.TeamId == entity.HomeTeamId),
-                        AwayTeam = ctx.Teams.Single(e => e.TeamId == entity.AwayTeamId),
+                        ParkName = entity.Park.ParkName,
+                        VisitorFirstName = entity.Visitor.FirstName,
+                        VisitorLastName = entity.Visitor.LastName,
+                        HomeTeamName = ctx.Teams.Single(e => e.TeamId == entity.HomeTeamId).TeamName,
+                        AwayTeamName = ctx.Teams.Single(e => e.TeamId == entity.AwayTeamId).TeamName,
                         VisitDate = entity.VisitDate,
                         GotPin = entity.GotPin,
                         GotPhoto = entity.GotPhoto
@@ -128,8 +127,6 @@ namespace StadiumTracker.Services
                 var entity = ctx.Visits.Single(e => e.VisitId == model.VisitId && e.OwnerId == _ownerId);
 
                 var parkBoolCheck = ctx.Parks.Single(e => e.ParkId == entity.Park.ParkId);
-
-                entity.Visitor = model.Visitor;
 
                 if (model.GotPin != parkBoolCheck.HasPin)
                 {
