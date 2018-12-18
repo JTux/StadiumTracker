@@ -47,7 +47,9 @@ namespace StadiumTracker.WebMVC.Controllers
         public ActionResult Details(int id)
         {
             var service = CreateParkService();
-            return View(service.GetParkById(id));
+            var model = (service.GetParkById(id));
+            model.CurrentUser = Guid.Parse(User.Identity.GetUserId());
+            return View(model);
         }
 
         //Edit

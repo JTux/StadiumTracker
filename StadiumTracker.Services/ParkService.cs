@@ -72,6 +72,7 @@ namespace StadiumTracker.Services
                     new ParkDetail
                     {
                         ParkId = entity.ParkId,
+                        OwnerId = entity.OwnerId,
                         ParkName = entity.ParkName,
                         CityName = entity.CityName,
                         IsVisited = entity.IsVisited,

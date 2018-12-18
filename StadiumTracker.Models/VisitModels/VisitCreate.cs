@@ -23,7 +23,6 @@ namespace StadiumTracker.Models.VisitModels
         public bool GotPin { get; set; }
         public bool GotPhoto { get; set; }
         public string ParkName { get; set; }
-        public string VisitorFirstName { get; set; }
-        public string VisitorLastName { get; set; }
+        public string VisitorFullName { get; set; }
     }
 }
