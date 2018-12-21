@@ -21,18 +21,5 @@ namespace StadiumTracker.Data
 
         [Required]
         public string CityName { get; set; }
-
-        [DefaultValue(false)]
-        public bool IsVisited { get; set; }
-
-        [DefaultValue(false)]
-        public bool HasPin { get; set; }
-
-        [DefaultValue(false)]
-        public bool HasPhoto { get; set; }
-
-        public int VisitCount { get; set; }
-        public int PinCount { get; set; }
-        public int PhotoCount { get; set; }
     }
 }
