@@ -21,5 +21,23 @@ namespace StadiumTracker.Data
 
         [Required]
         public string CityName { get; set; }
+
+        public bool HasPin
+        {
+            get
+            {
+                return Visits.FirstOrDefault(v => v.GotPin) != null;
+            }
+        }
+
+        public int PhotoCount
+        {
+            get
+            {
+                return Visits.Where(v => v.GotPhoto).Count();
+            }
+        }
+
+        public virtual List<Visit> Visits { get; set; } = new List<Visit>();
     }
 }

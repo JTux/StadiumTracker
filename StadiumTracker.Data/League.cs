@@ -14,5 +14,7 @@ namespace StadiumTracker.Data
 
         [Required]
         public string LeagueName { get; set; }
+
+        public virtual List<Team> Teams { get; set; } = new List<Team>();
     }
 }

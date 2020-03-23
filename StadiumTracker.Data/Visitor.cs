@@ -21,8 +21,22 @@ namespace StadiumTracker.Data
         [Required]
         public string LastName { get; set; }
 
-        public int TotalVisits { get; set; }
+        public int TotalVisits
+        {
+            get
+            {
+                return Visits.Count;
+            }
+        }
 
-        public int TotalPins { get; set; }
+        public int TotalPins
+        {
+            get
+            {
+                return Visits.Where(v => v.GotPin).Count();
+            }
+        }
+
+        public virtual List<Visit> Visits { get; set; } = new List<Visit>();
     }
 }

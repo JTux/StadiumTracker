@@ -35,16 +35,16 @@ namespace StadiumTracker.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                UpdateTotalVisits(entity.VisitorId, 1, ctx);
-                UpdateVisitCount(entity.ParkId, 1, ctx);
+                //UpdateTotalVisits(entity.VisitorId, 1, ctx);
+                //UpdateVisitCount(entity.ParkId, 1, ctx);
 
-                if (entity.GotPin == true)
-                {
-                    UpdatePinCount(entity.ParkId, 1, ctx);
-                    UpdatePersonalPins(entity.VisitorId, 1, ctx);
-                }
-                if (entity.GotPhoto == true)
-                    UpdatePhotoCount(entity.ParkId, 1, ctx);
+                //if (entity.GotPin == true)
+                //{
+                //    UpdatePinCount(entity.ParkId, 1, ctx);
+                //    UpdatePersonalPins(entity.VisitorId, 1, ctx);
+                //}
+                //if (entity.GotPhoto == true)
+                //    UpdatePhotoCount(entity.ParkId, 1, ctx);
 
                 ctx.Visits.Add(entity);
                 return ctx.SaveChanges() == 1;
@@ -126,27 +126,25 @@ namespace StadiumTracker.Services
             {
                 var entity = ctx.Visits.Single(e => e.VisitId == model.VisitId && e.OwnerId == _ownerId);
 
-                var parkBoolCheck = ctx.Parks.Single(e => e.ParkId == entity.Park.ParkId);
+                //if (model.GotPin != entity.GotPin)
+                //{
+                //    if (entity.GotPin == true)
+                //    {
+                //        UpdatePinCount(entity.ParkId, -1, ctx);
+                //        UpdatePersonalPins(entity.VisitorId, -1, ctx);
+                //    }
+                //    else if (entity.GotPin == false)
+                //    {
+                //        UpdatePinCount(entity.ParkId, 1, ctx);
+                //        UpdatePersonalPins(entity.VisitorId, 1, ctx);
+                //    }
+                //}
 
-                if (model.GotPin != parkBoolCheck.HasPin)
-                {
-                    if (parkBoolCheck.HasPin == true)
-                    {
-                        UpdatePinCount(entity.ParkId, -1, ctx);
-                        UpdatePersonalPins(entity.VisitorId, -1, ctx);
-                    }
-                    else if (parkBoolCheck.HasPin == false)
-                    {
-                        UpdatePinCount(entity.ParkId, 1, ctx);
-                        UpdatePersonalPins(entity.VisitorId, 1, ctx);
-                    }
-                }
-
-                if (model.GotPhoto != parkBoolCheck.HasPhoto)
-                {
-                    if (parkBoolCheck.HasPhoto == true) UpdatePhotoCount(entity.ParkId, -1, ctx);
-                    else if (parkBoolCheck.HasPhoto == false) UpdatePhotoCount(entity.ParkId, 1, ctx);
-                }
+                //if (model.GotPhoto != entity.GotPhoto)
+                //{
+                //    if (entity.GotPhoto == true) UpdatePhotoCount(entity.ParkId, -1, ctx);
+                //    else if (entity.GotPhoto == false) UpdatePhotoCount(entity.ParkId, 1, ctx);
+                //}
 
                 entity.VisitDate = model.VisitDate;
                 entity.GotPin = model.GotPin;
@@ -162,23 +160,23 @@ namespace StadiumTracker.Services
             {
                 var entity = ctx.Visits.Single(e => e.VisitId == visitId && e.OwnerId == _ownerId);
 
-                var visitCountCheck = ctx.Visitors.Single(e => e.VisitorId == entity.VisitorId);
-                if (visitCountCheck.TotalVisits > 0)
-                    UpdateTotalVisits(entity.VisitorId, -1, ctx);
+                //var visitCountCheck = ctx.Visitors.Single(e => e.VisitorId == entity.VisitorId);
+                //if (visitCountCheck.TotalVisits > 0)
+                //    UpdateTotalVisits(entity.VisitorId, -1, ctx);
 
-                var parkBoolCheck = ctx.Parks.Single(e => e.ParkId == entity.Park.ParkId);
+                //var parkBoolCheck = ctx.Parks.Single(e => e.ParkId == entity.Park.ParkId);
 
-                if (parkBoolCheck.VisitCount > 0)
-                    UpdateVisitCount(parkBoolCheck.ParkId, -1, ctx);
+                //if (parkBoolCheck.VisitCount > 0)
+                //    UpdateVisitCount(parkBoolCheck.ParkId, -1, ctx);
 
-                if (parkBoolCheck.PinCount > 0)
-                    UpdatePinCount(parkBoolCheck.ParkId, -1, ctx);
+                //if (parkBoolCheck.PinCount > 0)
+                //    UpdatePinCount(parkBoolCheck.ParkId, -1, ctx);
 
-                if (parkBoolCheck.PhotoCount > 0)
-                    UpdatePhotoCount(parkBoolCheck.ParkId, -1, ctx);
+                //if (parkBoolCheck.PhotoCount > 0)
+                //    UpdatePhotoCount(parkBoolCheck.ParkId, -1, ctx);
 
-                if (entity.GotPin == true)
-                    UpdatePersonalPins(entity.VisitorId, -1, ctx);
+                //if (entity.GotPin == true)
+                //    UpdatePersonalPins(entity.VisitorId, -1, ctx);
 
                 ctx.Visits.Remove(entity);
 
@@ -186,52 +184,52 @@ namespace StadiumTracker.Services
             }
         }
 
-        private bool UpdateTotalVisits(int visitorId, int value, ApplicationDbContext ctx)
-        {
-            var entity = ctx.Visitors.Single(e => e.VisitorId == visitorId);
-            entity.TotalVisits += value;
-            return ctx.SaveChanges() == 1;
-        }
+        //private bool UpdateTotalVisits(int visitorId, int value, ApplicationDbContext ctx)
+        //{
+        //    var entity = ctx.Visitors.Single(e => e.VisitorId == visitorId);
+        //    entity.TotalVisits += value;
+        //    return ctx.SaveChanges() == 1;
+        //}
 
-        private bool UpdateVisitCount(int parkId, int value, ApplicationDbContext ctx)
-        {
-            var park = ctx.Parks.Single(e => e.ParkId == parkId);
-            park.VisitCount += value;
+        //private bool UpdateVisitCount(int parkId, int value, ApplicationDbContext ctx)
+        //{
+        //    var park = ctx.Parks.Single(e => e.ParkId == parkId);
+        //    park.VisitCount += value;
 
-            if (park.VisitCount > 0) park.IsVisited = true;
-            else park.IsVisited = false;
+        //    if (park.VisitCount > 0) park.IsVisited = true;
+        //    else park.IsVisited = false;
 
-            return ctx.SaveChanges() == 1;
-        }
+        //    return ctx.SaveChanges() == 1;
+        //}
 
-        private bool UpdatePinCount(int parkId, int value, ApplicationDbContext ctx)
-        {
-            var park = ctx.Parks.Single(e => e.ParkId == parkId);
-            park.PinCount += value;
+        //private bool UpdatePinCount(int parkId, int value, ApplicationDbContext ctx)
+        //{
+        //    var park = ctx.Parks.Single(e => e.ParkId == parkId);
+        //    park.PinCount += value;
 
-            if (park.PinCount > 0) park.HasPin = true;
-            else park.HasPin = false;
+        //    if (park.PinCount > 0) park.HasPin = true;
+        //    else park.HasPin = false;
 
-            return ctx.SaveChanges() == 1;
-        }
+        //    return ctx.SaveChanges() == 1;
+        //}
 
-        private bool UpdatePersonalPins(int visitorId, int value, ApplicationDbContext ctx)
-        {
-            var visitor = ctx.Visitors.Single(e => e.VisitorId == visitorId);
-            visitor.TotalPins += value;
+        //private bool UpdatePersonalPins(int visitorId, int value, ApplicationDbContext ctx)
+        //{
+        //    var visitor = ctx.Visitors.Single(e => e.VisitorId == visitorId);
+        //    visitor.TotalPins += value;
 
-            return ctx.SaveChanges() == 1;
-        }
+        //    return ctx.SaveChanges() == 1;
+        //}
 
-        private bool UpdatePhotoCount(int parkId, int value, ApplicationDbContext ctx)
-        {
-            var park = ctx.Parks.Single(e => e.ParkId == parkId);
-            park.PhotoCount += value;
+        //private bool UpdatePhotoCount(int parkId, int value, ApplicationDbContext ctx)
+        //{
+        //    var park = ctx.Parks.Single(e => e.ParkId == parkId);
+        //    park.PhotoCount += value;
 
-            if (park.PhotoCount > 0) park.HasPhoto = true;
-            else park.HasPhoto = false;
+        //    if (park.PhotoCount > 0) park.HasPhoto = true;
+        //    else park.HasPhoto = false;
 
-            return ctx.SaveChanges() == 1;
-        }
+        //    return ctx.SaveChanges() == 1;
+        //}
     }
 }

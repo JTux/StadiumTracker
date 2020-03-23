@@ -26,7 +26,6 @@ namespace StadiumTracker.Services
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    FullName = $"{model.FirstName} {model.LastName}",
                     OwnerId = _userId
                 };
             using (var ctx = new ApplicationDbContext())
@@ -43,7 +42,7 @@ namespace StadiumTracker.Services
                 var query =
                     ctx
                         .Visitors
-                        .Where(v => v.OwnerId == _userId)
+                        .Where(v => v.OwnerId == _userId).ToList()
                         .Select(
                             v =>
                                 new VisitorListItem
@@ -51,7 +50,7 @@ namespace StadiumTracker.Services
                                     VisitorId = v.VisitorId,
                                     FirstName = v.FirstName,
                                     LastName = v.LastName,
-                                    FullName = v.FullName,
+                                    FullName = v.FirstName + " " + v.LastName,
                                     TotalVisits = v.TotalVisits,
                                     TotalPins = v.TotalPins,
                                 }
@@ -74,7 +73,7 @@ namespace StadiumTracker.Services
                         VisitorId = entity.VisitorId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
-                        FullName = entity.FullName,
+                        FullName = $"{entity.FirstName} {entity.LastName}",
                         TotalVisits = entity.TotalVisits,
                         TotalPins = entity.TotalPins
                     };
@@ -92,7 +91,6 @@ namespace StadiumTracker.Services
 
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
-                entity.FullName = $"{model.FirstName} {model.LastName}";
 
                 return ctx.SaveChanges() == 1;
             }

@@ -22,8 +22,9 @@ namespace StadiumTracker.WebMVC.Controllers
         public ActionResult Create()
         {
             var service = CreateVisitService();
+            var visitorService = new VisitorService(Guid.Parse(User.Identity.GetUserId()));
 
-            var unsortedVisitorList = new SelectList(service.GetOwnedList("Visitor"), "VisitorId", "FullName");
+            var unsortedVisitorList = new SelectList(visitorService.GetVisitors(), "VisitorId", "FullName");
             var visitorList = unsortedVisitorList.OrderBy(o => o.Text);
 
             var unsortedParkList = new SelectList(service.GetOwnedList("Park"), "ParkId", "ParkName");

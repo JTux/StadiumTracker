@@ -50,10 +50,13 @@ namespace StadiumTracker.Services
                                     ParkId = e.ParkId,
                                     ParkName = e.ParkName,
                                     CityName = e.CityName,
-                                    IsVisited = e.IsVisited,
-                                    HasPin = e.HasPin,
-                                    HasPhoto = e.HasPhoto,
-                                    VisitCount = e.VisitCount,
+                                    IsVisited = e.Visits
+                                        .Where(v => v.ParkId == e.ParkId).Count() > 0,
+                                    HasPin = e.Visits
+                                        .Where(v => v.ParkId == e.ParkId && v.GotPin).Count() > 0,
+                                    HasPhoto = e.Visits
+                                        .Where(v => v.ParkId == e.ParkId && v.GotPhoto).Count() > 0,
+                                    VisitCount = e.Visits.Count,
                                 }
                         );
                 var queryArray = query.ToArray();
@@ -75,7 +78,7 @@ namespace StadiumTracker.Services
                         OwnerId = entity.OwnerId,
                         ParkName = entity.ParkName,
                         CityName = entity.CityName,
-                        IsVisited = entity.IsVisited,
+                        IsVisited = entity.Visits.FirstOrDefault(v => v.ParkId == entity.ParkId) != null,
                     };
             }
         }

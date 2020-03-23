@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,26 +14,27 @@ namespace StadiumTracker.Data
         [Key]
         public int VisitId { get; set; }
 
-        [Required]
-        public int ParkId { get; set; }
-
-        [Required]
-        public int HomeTeamId { get; set; }
-
-        [Required]
-        public int AwayTeamId { get; set; }
-
-        [Required]
+        [ForeignKey(nameof(Visitor))]
         public int VisitorId { get; set; }
+        public virtual Visitor Visitor { get; set; }
+
+        [ForeignKey(nameof(Park))]
+        public int ParkId { get; set; }
+        public virtual Park Park { get; set; }
+
+        [ForeignKey(nameof(HomeTeam))]
+        public int HomeTeamId { get; set; }
+        public virtual Team HomeTeam { get; set; }
+
+        [ForeignKey(nameof(AwayTeam))]
+        public int AwayTeamId { get; set; }
+        public virtual Team AwayTeam { get; set; }
 
         [Required]
         public Guid OwnerId { get; set; }
 
         [Required]
         public DateTime VisitDate { get; set; }
-
-        public virtual Park Park { get; set; }
-        public virtual Visitor Visitor { get; set; }
 
         [Required]
         public bool GotPin { get; set; }
